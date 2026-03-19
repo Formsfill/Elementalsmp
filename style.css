@@ -1,0 +1,563 @@
+/* =======================
+   Global Styles
+======================= */
+* {margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth;}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg,#000,#0f2027,#1a1a1a,#203a43);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color:white;
+}
+
+@keyframes gradientBG{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* =======================
+   Navbar
+======================= */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: #00ffcc;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: #00ffcc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Mobile / Tablet (up to 1024px) */
+@media(max-width: 900px) {
+  .navbar nav {
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    left: auto;
+
+    width: 100%;
+    height: auto;
+
+    background: #111;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc;
+
+    display: none;
+  }
+
+  .navbar nav.active {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+  .navbar nav a {
+    font-size: 0.85rem; /* 👈 smaller text */
+    padding: 6px 0;
+  }
+}
+
+/* =======================
+   Header
+======================= */
+header{
+    text-align:center;
+    padding:150px 20px 100px;
+}
+
+h1{
+    font-size:3em;
+    color:#00ffcc;
+}
+
+.ip-box{
+    margin-top:25px;
+    padding:15px;
+    background:#111;
+    border:2px solid #00ffcc;
+    display:inline-block;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn{
+    display:inline-block;
+    margin:15px;
+    padding:12px 30px;
+    background:#00ffcc;
+    color:black;
+    text-decoration:none;
+    border-radius:25px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:white;
+    transform:scale(1.05);
+}
+
+/* =======================
+   Sections / Cards
+======================= */
+section{
+    padding:120px 20px;
+    text-align:center;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:40px;
+}
+
+.card{
+    background: rgba(0,0,0,0.7);
+    padding:25px;
+    width:250px;
+    border-radius:15px;
+    border:1px solid #00ffcc;
+    transition:0.3s;
+    text-align:center;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.cards input {
+    padding:5px;
+    margin-right:5px;
+    width: calc(50% - 10px);
+}
+footer {
+    width: 100%;
+    background: #111;
+    color: #f5f5f5;
+    padding: 40px 20px;
+    font-family: 'Minecraft', Arial, sans-serif;
+    text-align: center;  /* Centers everything inside the footer */
+    border-top: 3px solid #FFD700;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    width: 70%;       /* Text/content width */
+    margin: 0 auto;   /* Center container */
+}
+
+.footer-brand p {
+    margin: 5px 0 15px;
+    color: #ccc;
+}
+
+/* Quick Links */
+.footer-links a {
+    color: #f5f5f5;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #FFD700;
+    text-shadow: 1px 1px #000;
+}
+
+/* General social icons */
+.social-links {
+    width: 30px;      /* Default size */
+    height: 30px;
+    margin: 0 10px;
+    transition: transform 0.2s;
+}
+
+/* YouTube smaller */
+.youtube-links {
+    width: 100px;      
+    height: 34px;     /* keep square */
+}
+
+/* Center the social icons */
+#social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Hover effect */
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Legal & Policies */
+.footer-legal a {
+    color: #aaa;
+    text-decoration: none;
+    margin: 0 5px;
+    font-size: 0.9em;
+}
+
+.footer-legal a:hover {
+    color: #FFD700;
+}
+
+.footer-legal p {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        width: 90%;
+    }
+    .footer-links a {
+        display: block;
+        margin: 5px 0;
+    }
+    #social-links {
+        flex-direction: row;  /* Keeps horizontal but shrinks nicely */
+    }
+    .footer-legal a {
+        display: block;
+        margin: 3px 0;
+    }
+}
+/* =======================
+   Leaderboard Cards
+======================= */
+.card p{
+    font-weight:bold;
+    color:white;
+}
+/* Extra catch for tablets in landscape */
+@media screen and (max-device-width: 1280px) and (orientation: landscape),
+       screen and (max-width: 1280px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0,0,0,0.95);
+        padding: 10px 0;
+        border-top: 2px solid #00ffcc;
+    }
+
+    .nav-links a {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+/* Flex direction for nav container */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo always on the right */
+.nav-logo {
+    order: 2; /* put logo at the end */
+    color: #00ffcc;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/* Nav links and hamburger on the left */
+.nav-links, .hamburger {
+    order: 1; /* move links and hamburger to the start */
+}
+
+/* Mobile / Tablet adjustments remain the same */
+@media screen and (max-width: 1024px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0,0,0,0.95);
+        padding: 10px 0;
+        border-top: 2px solid #00ffcc;
+    }
+
+    .nav-links a {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+/* =======================
+   Footer Styles
+======================= */
+footer {
+    display: flex;
+    justify-content: space-between; /* text left/center, icons right */
+    align-items: center;
+    padding: 15px 20px;
+    background: black;
+    opacity: 0.9;
+}
+footer div:first-child {
+    color: white;
+    font-size: 14px;          /* normal readable text size */
+}
+
+#social-links {
+    display: flex;
+    flex-direction: row;      /* horizontal icons */
+    gap: 20px;                /* space between icons (~0.5 cm) */
+    align-items: center;
+}
+
+#social-links img {
+    height: 35px;             /* icon size */
+    width: auto;    
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#social-links img:hover {
+    transform: scale(1.1);    /* hover zoom effect */
+}
+
+/* Optional: responsive adjustment for mobile */
+@media screen and (max-width: 600px) {
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #social-links {
+        gap: 8px;
+    }
+    #social-links img {
+        height: 30px;
+    }
+}
+#contact {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 2.5em;
+    color: #00ffcc;
+    margin-bottom: 20px;
+}
+
+#contact p {
+    margin-bottom: 20px;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #00ffcc;
+    background: #111;
+    color: white;
+    font-size: 1em;
+}
+
+#contact-form button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#contact-form button:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+#contact-status {
+    color: #00ffcc;
+    margin-top: 10px;
+}
+
+
+#countdown {text-align:center; padding:80px 20px; background:rgba(0,0,0,0.6); border:2px solid #00ffcc; border-radius:15px; margin:40px auto; max-width:600px;}
+#timer {font-size:2em; font-weight:bold; margin-top:15px; color:#00ffcc;}
+#edit-timer input {padding:8px; border-radius:5px; border:1px solid #00ffcc; margin-right:10px;}
+#edit-timer button:hover {transform:scale(1.05);}
+
+#whitelisted {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+#whitelisted h2 {
+    color: #00ffcc;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#whitelisted p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+#whitelist-form {
+    max-width: 700px;
+    margin: auto;
+}
+
+.form-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#whitelisted input,
+#whitelisted textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #00ffcc;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 1rem;
+}
+
+#whitelisted textarea {
+    height: 120px;
+    resize: none;
+    margin-bottom: 15px;
+}
+
+#whitelisted button {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#whitelisted button:hover {
+    background: white;
+    transform: scale(1.05);
+}
+/* FAQ Styles */
+#faq {
+    padding: 120px 40px;
+    text-align: center;
+}
+.faq-container {
+    max-width: 800px;
+    margin: 60px auto;
+    text-align: left;
+}
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #00ffcc;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.7);
+}
+.faq-question {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.85);
+    color: #00ffcc;
+    font-weight: bold;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+.faq-question:hover {
+    background: rgba(0,255,204,0.1);
+    color:white;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 50px;
+    transition: max-height 0.3s ease;
+}
+.faq-answer p {
+    padding: 10px 0;
+    color: #fff;
+    margin:0;
+}
