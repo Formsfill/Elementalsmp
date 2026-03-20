@@ -62,15 +62,13 @@ body {
     user-select: none;
 }
 
-/* Mobile / Tablet (up to 1024px) */
 @media(max-width: 900px) {
   .navbar nav {
     position: fixed;
     top: 70px;
-    right: 10px;
-    left: auto;
-
-    width: 50%;
+    right: 25%; /* Center it horizontally */
+    left: 25%;  /* 100% - 50% width = 25% on each side */
+    width: 50%; /* 👈 now 50% width */
     height: auto;
 
     background: #111;
@@ -85,10 +83,9 @@ body {
     display: flex;
     flex-direction: column;
   }
-}
 
   .navbar nav a {
-    font-size: 0.85rem; /* 👈 smaller text */
+    font-size: 0.85rem; /* smaller text */
     padding: 6px 0;
   }
 }
@@ -560,4 +557,122 @@ footer div:first-child {
     padding: 10px 0;
     color: #fff;
     margin:0;
+}
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+}
+
+/* LOGO */
+.nav-logo {
+  color: #00ffcc;
+  font-weight: bold;
+  font-size: 1.2em;
+  white-space: nowrap; /* 👈 prevent breaking */
+}
+
+/* LINKS DESKTOP */
+#nav-links {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap; /* 👈 force single line */
+  overflow-x: auto;    /* 👈 if too many links */
+}
+
+#nav-links a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#nav-links a:hover {
+  color: white;
+}
+
+/* HAMBURGER */
+#hamburger {
+  display: none;
+  font-size: 1.8em;
+  color: #00ffcc;
+  cursor: pointer;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  display: none;
+}
+
+/* OVERLAY */
+#overlay {
+  display: none;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width: 900px) {
+
+  #hamburger {
+    display: block;
+  }
+
+  /* Sidebar menu */
+  #nav-links {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100vh;
+    background: #111;
+    flex-direction: column;
+    padding: 60px 20px;
+    gap: 20px;
+    transition: 0.3s;
+    z-index: 1002;
+    border-right: 2px solid #00ffcc;
+    overflow: hidden;
+  }
+
+  #nav-links.active {
+    left: 0;
+  }
+
+  #nav-links a {
+    font-size: 1rem;
+  }
+
+  /* Close button */
+  .close-btn {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #00ffcc;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    color: red;
+  }
+
+  /* Overlay */
+  #overlay.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+  }
 }
