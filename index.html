@@ -442,6 +442,36 @@ header p{color:#aaa;font-size:1.2em;}
         padding: 10px;
     }
 }
+        /* ===== FIX HORIZONTAL SCROLL ON DESKTOP NAV ===== */
+@media (min-width: 901px) {
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden; /* 🔥 removes horizontal scroll */
+  }
+
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden; /* prevent scroll */
+    white-space: nowrap;
+  }
+
+  #nav-links a {
+    font-size: 0.85rem; /* slightly smaller */
+    margin: 0 6px; /* reduce spacing */
+  }
+
+  /* Hide hamburger + close button on desktop */
+  #hamburger,
+  #close-btn,
+  #overlay {
+    display: none !important;
+  }
+}
     </style>
   <link rel="stylesheet" href="style.css">
 </head>
