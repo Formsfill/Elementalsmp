@@ -1,13 +1,31 @@
-// ============================
-// Hamburger Menu
-// ============================
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
+const closeBtn = document.getElementById('close-btn');
+const overlay = document.getElementById('overlay');
 
-if(hamburger && navLinks){
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+// Open menu
+hamburger.addEventListener('click', () => {
+  navLinks.classList.add('active');
+  overlay.classList.add('active');
+});
+
+// Close menu (button)
+closeBtn.addEventListener('click', () => {
+  navLinks.classList.remove('active');
+  overlay.classList.remove('active');
+});
+
+// Close menu (click outside)
+overlay.addEventListener('click', () => {
+  navLinks.classList.remove('active');
+  overlay.classList.remove('active');
+});
+const homeToggle = document.getElementById("home-toggle");
+
+if(homeToggle){
+  homeToggle.addEventListener("click", () => {
+    homeToggle.parentElement.classList.toggle("active");
+  });
 }
 
 // ============================
