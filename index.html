@@ -415,6 +415,33 @@ header p{color:#aaa;font-size:1.2em;}
     white-space: nowrap; /* prevent breaking */
   }
 }
+        /* CTA Buttons Layout */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap; /* allows stacking ONLY if too small */
+    margin-top: 20px;
+}
+
+/* Make buttons responsive */
+.cta-buttons .btn {
+    flex: 1 1 140px; /* flexible width */
+    text-align: center;
+    max-width: 200px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px) {
+    .cta-buttons {
+        flex-wrap: nowrap; /* force same line */
+    }
+
+    .cta-buttons .btn {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+}
     </style>
   <link rel="stylesheet" href="style.css">
 </head>
