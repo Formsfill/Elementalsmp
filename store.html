@@ -189,7 +189,36 @@ section {
         iframe{border-radius:15px;max-width:100%;}
         footer{background:black;padding:30px;text-align:center;opacity:0.6;}
         #server-status{margin-top:15px;font-weight:bold;}
-    
+ /* ===== FIX HORIZONTAL SCROLL ON DESKTOP NAV ===== */
+@media (min-width: 901px) {
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden; /* 🔥 removes horizontal scroll */
+  }
+
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden; /* prevent scroll */
+    white-space: nowrap;
+  }
+
+  #nav-links a {
+    font-size: 0.85rem; /* slightly smaller */
+    margin: 0 6px; /* reduce spacing */
+  }
+
+  /* Hide hamburger + close button on desktop */
+  #hamburger,
+  #close-btn,
+  #overlay {
+    display: none !important;
+  }
+}   
 </style>
    <link rel="stylesheet" href="style.css">
 </head>
