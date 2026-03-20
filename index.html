@@ -356,7 +356,65 @@ header p{color:#aaa;font-size:1.2em;}
   .staff-rank{font-size:1.2em;}
   .staff-info{font-size:0.95em;}
 } 
-    
+  /* Dropdown (hidden by default) */
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  padding-left: 10px;
+  border-left: 2px solid #00ffcc;
+}
+
+/* Show dropdown */
+.dropdown.active .dropdown-menu {
+  display: flex;
+}
+
+/* Dropdown toggle */
+.dropdown-toggle {
+  color: #00ffcc;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+/* Smooth feel */
+.dropdown-menu a {
+  font-size: 0.9rem;
+  padding: 6px 0;
+}
+
+/* DESKTOP: disable dropdown (show normal Home only) */
+@media(min-width: 901px){
+  .dropdown-menu {
+    display: none !important;
+  }
+
+  .dropdown-toggle::after {
+    content: "";
+  }
+}
+/* ===== DESKTOP NAV FIX ===== */
+@media (min-width: 901px) {
+
+  nav {
+    padding: 10px 20px; /* slightly tighter */
+  }
+
+  .nav-logo {
+    font-size: 1.05rem; /* smaller logo */
+    white-space: nowrap;
+  }
+
+  #nav-links {
+    gap: 12px; /* reduce spacing */
+    flex-wrap: nowrap; /* force one line */
+  }
+
+  #nav-links a {
+    font-size: 0.9rem; /* smaller links */
+    white-space: nowrap; /* prevent breaking */
+  }
+}
     </style>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -365,24 +423,42 @@ header p{color:#aaa;font-size:1.2em;}
 
 <!-- Navigation Menu -->
 <nav>
-  <div class="nav-container">
-    <div class="hamburger" id="hamburger">☰</div>
-    <div class="nav-links" id="nav-links">
-      <a href="#home">Home</a>
-      <a href="#features">Features</a>
-      <a href="#rules">Rules</a>
-      <a href="#staff">Staff</a>
-      <a href="#whitelist">Whitelist</a>
-      <a href="store.html">Store</a>
-      <a href="#leaderboard">Leaderboard</a>
-      <a href="#server-details">Server Details</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact Form</a>
-        <a href="frost.html">💡 Tips & Tricks</a>
-    </div>
-    <div class="nav-logo">❄ Elemental Lifesteal SMP ❄</div>
+  <div id="hamburger">☰</div>
+
+  <div class="nav-logo">❄ Elemental Lifesteal SMP ❄</div>
+
+  <div id="nav-links">
+    <div class="close-btn" id="close-btn">✖</div>
+
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#rules">Rules</a>
+    <a href="#staff">Staff</a>
+    <a href="#whitelist">Whitelist</a>
+    <a href="store.html">Store</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#server-details">Server Details</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
   </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
 </nav>
+    <div class="dropdown">
+  <div class="dropdown-toggle" id="home-toggle">Home ▼</div>
+
+  <div class="dropdown-menu" id="home-menu">
+    <a href="#home">🏠 Main Home</a>
+    <a href="#features">⚔ Features</a>
+    <a href="#rules">📜 Rules</a>
+    <a href="#staff">👑 Staff</a>
+    <a href="#leaderboard">🏆 Leaderboard</a>
+    <a href="#server-details">📌 Server Details</a>
+    <a href="#faq">❓ FAQ</a>
+    <a href="store.html">🛒 Store</a>
+  </div>
+</div>
 
 <!-- Header -->
 <header id="home">
@@ -791,6 +867,8 @@ staffMembers.forEach(member=>{
   `;
   container.appendChild(div);
 });
+    
+    
 </script>
       
   <script src="leaderboard.js"></script>
