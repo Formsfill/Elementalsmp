@@ -425,30 +425,36 @@ header p{color:#aaa;font-size:1.2em;}
         @media (min-width: 901px) {
 
   nav {
+@media (min-width: 901px) {
+
+  nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden; /* 🔥 removes horizontal scroll */
+    padding: 15px 50px; /* reduce top/bottom padding */
   }
 
   #nav-links {
     display: flex;
     align-items: center;
-    gap: 10px;
-    overflow: hidden; /* prevent scroll */
+    gap: 20px; /* normal gap between links */
     white-space: nowrap;
   }
 
   #nav-links a {
-    font-size: 0.85rem; /* slightly smaller */
-    margin: 0 6px; /* reduce spacing */
+    font-size: 1rem; /* normal size */
+    margin: 0; /* remove extra spacing */
   }
 
-  /* Hide hamburger + close button on desktop */
+  /* Hide hamburger + overlay on desktop */
   #hamburger,
   #close-btn,
   #overlay {
     display: none !important;
+  }
+
+  .nav-logo {
+    font-size: 1.5rem; /* slightly bigger logo */
   }
 }
     </style>
