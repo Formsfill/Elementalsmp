@@ -427,23 +427,36 @@ header p{color:#aaa;font-size:1.2em;}
   nav {
 @media (min-width: 1200px) {
 
+@media (min-width: 901px) {
+
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 50px; /* reduce top/bottom padding */
+    padding: 15px 50px; /* top/bottom and sides */
+  }
+
+  .nav-logo {
+    font-size: 1.5rem; /* logo size */
+    margin-right: 40px; /* space between logo and links */
   }
 
   #nav-links {
     display: flex;
     align-items: center;
-    gap: 20px; /* normal gap between links */
+    gap: 25px; /* increased gap between links */
     white-space: nowrap;
   }
 
   #nav-links a {
     font-size: 1rem; /* normal size */
-    margin: 0; /* remove extra spacing */
+    margin: 0; /* reset margin */
+    padding: 6px 10px; /* small padding for clickable area */
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  #nav-links a:hover {
+    transform: scale(1.05);
   }
 
   /* Hide hamburger + overlay on desktop */
@@ -451,10 +464,6 @@ header p{color:#aaa;font-size:1.2em;}
   #close-btn,
   #overlay {
     display: none !important;
-  }
-
-  .nav-logo {
-    font-size: 1.5rem; /* slightly bigger logo */
   }
 }
     </style>
