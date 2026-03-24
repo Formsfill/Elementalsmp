@@ -249,7 +249,10 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
     <textarea name="message" placeholder="Write your enquiry..." required></textarea>
   </div>
   <button type="submit">Send Enquiry</button>
- 
+ <!-- Native Formspree error message -->
+  <div class="error" data-sf-error style="display:none;">
+    ⚠️ Oops! Something went wrong. Please try again.
+  </div>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/@formspree/embed@2/dist/formspree.embed.min.js"></script>
