@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Enquiry & Knowledge Base - Elemental SMP</title>
+  <link rel="stylesheet" href="style.css">
 <style>
 /* ===== RESET & BASE ===== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
@@ -126,8 +127,8 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
   .kb-item{width:90%;left:0;transform:none;margin-left:5%;}
   .kb-item.left::after,.kb-item.right::after{left:-12px;right:auto;}
 }
-</style>
   
+</style>
 </head>
 <body>
 <nav>
@@ -146,6 +147,10 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
     <a href="Contact.html">Contact</a>
     
   </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+</nav>
 <header>
 <h1>📝 Server Enquiries & Updates</h1>
 <p>Have a question or need help? Submit your enquiry here and stay updated with server news, events, and announcements.</p>
@@ -232,7 +237,7 @@ document.getElementById("enquiryForm").addEventListener("submit", function(e){
 if(location.search.includes("edit=true")){
   document.getElementById("editForm").style.display="block";
 }
-    <script>
+    
 const kbItems = document.querySelectorAll('.kb-item');
 
 kbItems.forEach(item => {
@@ -241,7 +246,7 @@ kbItems.forEach(item => {
   });
 });
 </script>
-</script>
-<script src="leaderboard.js></script>
+<script src="leaderboard.js"></script>
+
 </body>
 </html>
