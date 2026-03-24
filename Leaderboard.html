@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elemental Lifesteal SMP - Leaderb</title>
+<title>Elemental Lifesteal SMP - Leaderboard</title>
 <style>
 /* ===== GENERAL STYLES ===== */
 body {
@@ -208,7 +208,7 @@ button:hover {
     <a href="About.html">About</a>
       <a href="Updates.html">Updates</a>
     <a href="Contact.html">Contact</a>
-    <a href="leaderboard"> Leaderboard</a>
+    <a href="leaderboard.html"> Leaderboard</a>
     
   </div>
 
@@ -307,6 +307,35 @@ function updateLeaderboard(){
 // Initial render
 renderLeaderboard();
 renderInputs();
+  const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+const closeBtn = document.getElementById('close-btn');
+const overlay = document.getElementById('overlay');
+
+// Open menu
+hamburger.addEventListener('click', () => {
+  navLinks.classList.add('active');
+  overlay.classList.add('active');
+});
+
+// Close menu (button)
+closeBtn.addEventListener('click', () => {
+  navLinks.classList.remove('active');
+  overlay.classList.remove('active');
+});
+
+// Close menu (click outside)
+overlay.addEventListener('click', () => {
+  navLinks.classList.remove('active');
+  overlay.classList.remove('active');
+});
+const homeToggle = document.getElementById("home-toggle");
+
+if(homeToggle){
+  homeToggle.addEventListener("click", () => {
+    homeToggle.parentElement.classList.toggle("active");
+  });
+}
 </script>
   <script src="leaderboard.js"></script>
 </body>
