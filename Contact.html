@@ -252,29 +252,7 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
  
 </form>
 
-<script>
-// Modern thank-you message for Formspree
-const form = document.getElementById("enquiryForm");
-const successMsg = document.getElementById("successMsg");
-
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const formData = new FormData(form);
-
-  const response = await fetch(form.action, {
-    method: form.method,
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  });
-
-  if (response.ok) {
-    successMsg.style.display = "block";
-    form.reset();
-  } else {
-    alert("Oops! There was a problem submitting your form.");
-  }
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@formspree/embed@2/dist/formspree.embed.min.js"></script>
 
     <!-- Editable Instructions -->
     <div class="edit" id="editForm">
