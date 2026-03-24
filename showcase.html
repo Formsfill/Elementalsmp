@@ -46,17 +46,74 @@ nav a:hover{color:white;}
   .showcase-desc{font-size:1em;}
   .showcase-badge{font-size:0.85em; padding:6px 18px;}
 }
+      nav {
+@media (min-width: 1200px) {
+
+@media (min-width: 901px) {
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px; /* top/bottom and sides */
+  }
+
+  .nav-logo {
+    font-size: 1.5rem; /* logo size */
+    margin-right: 40px; /* space between logo and links */
+  }
+
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px; /* increased gap between links */
+    white-space: nowrap;
+  }
+
+  #nav-links a {
+    font-size: 1rem; /* normal size */
+    margin: 0; /* reset margin */
+    padding: 6px 10px; /* small padding for clickable area */
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  #nav-links a:hover {
+    transform: scale(1.05);
+  }
+
+
+  /* Hide hamburger + close button on desktop */
+  #hamburger,
+  #close-btn,
+  #overlay {
+    display: none !important;
+  }
+}   
 </style>
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- Navigation -->
 <nav>
-  <a href="index.html">Home</a>
-  <a href="store.html">Store</a>
-  <a href="showcase.html">Showcase</a>
-  <a href="updates.html">Updates</a>
-  <a href="contact.html">Contact</a>
+  <div id="hamburger">☰</div>
+
+  <div class="nav-logo">❄ Elemental Lifesteal SMP ❄</div>
+
+  <div id="nav-links">
+    <div class="close-btn" id="close-btn">✖</div>
+
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="About.html">About</a>
+      <a href="Updates.html">Updates</a>
+    <a href="Contact.html">Contact</a>
+    
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
 </nav>
 <!-- PROFESSIONAL SHOWCASE INTRO -->
 <!-- PROFESSIONAL SHOWCASE INTRO -->
@@ -158,7 +215,7 @@ nav a:hover{color:white;}
 <script>
 // Sample Showcase Data
 let showcaseItems = [
-  {title:"Epic Castle", desc:"A massive castle build by player Alex with automated defenses.", badge:"🏰 Creative"},
+  {title:"Epic Castle", desc:"A massive castle build by player Alex with automated defenses.", badge:"⚒️ builder"},
   {title:"Nether Fortress", desc:"A detailed Nether fortress with hidden traps and lava channels.", badge:"🔥 Survival"},
   {title:"Sky Island Base", desc:"Floating base in the clouds with farms and enchanting rooms.", badge:"☁️ Unique"},
   {title:"Redstone Contraption", desc:"Advanced redstone machine for auto-farming and doors.", badge:"⚙️ Technical"}
@@ -212,6 +269,6 @@ function updateShowcase(){
   alert("Showcase updated!");
 }
 </script>
-
+<script src="leaderboard.js"></script>
 </body>
 </html>
