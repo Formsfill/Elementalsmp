@@ -221,11 +221,8 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
   <!-- ENQUIRY FORM -->
   <div class="form-card">
     <h2>📩 Make an Enquiry</h2>
-<form id="enquiryForm" action="https://formspree.io/f/xkoqddrz" method="POST">
+<form id="enquiryForm" action="https://formspree.io/f/xkoqddrz" method="POST" data-redirect="thankyou.html">>
 <div class="form-card">
-    
-  <form id="enquiryForm" action="https://formspree.io/f/xkoqddrz" method="POST">
-  <div class="form-group">
     <label>Name</label>
     <input type="text" name="name" placeholder="Your Name" required>
   </div>
@@ -249,10 +246,7 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
     <textarea name="message" placeholder="Write your enquiry..." required></textarea>
   </div>
   <button type="submit">Send Enquiry</button>
- <!-- Native Formspree error message -->
-  <div class="error" data-sf-error style="display:none;">
-    ⚠️ Oops! Something went wrong. Please try again.
-  </div>
+ 
 </form>
 
 <h1>Thanks!</h1>
