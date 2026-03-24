@@ -222,6 +222,9 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
   <div class="form-card">
     <h2>📩 Make an Enquiry</h2>
 <form id="enquiryForm" action="https://formspree.io/f/xkoqddrz" method="POST">
+<div class="form-card">
+    <h2>📩 Make an Enquiry</h2>
+  <form id="enquiryForm" action="https://formspree.io/f/xkoqddrz" method="POST">
   <div class="form-group">
     <label>Name</label>
     <input type="text" name="name" placeholder="Your Name" required>
@@ -246,8 +249,32 @@ button:hover{background:#00e5b5;transform:scale(1.03);}
     <textarea name="message" placeholder="Write your enquiry..." required></textarea>
   </div>
   <button type="submit">Send Enquiry</button>
-  <div class="success" id="successMsg">✅ Enquiry submitted successfully!</div>
+ 
 </form>
+
+<script>
+// Modern thank-you message for Formspree
+const form = document.getElementById("enquiryForm");
+const successMsg = document.getElementById("successMsg");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (response.ok) {
+    successMsg.style.display = "block";
+    form.reset();
+  } else {
+    alert("Oops! There was a problem submitting your form.");
+  }
+});
+</script>
 
     <!-- Editable Instructions -->
     <div class="edit" id="editForm">
