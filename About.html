@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About • Elemental SMP</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;}
+
+body{
+  background:linear-gradient(-45deg,#020617,#0f172a,#020617);
+  color:#e2e8f0;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:120px 20px 60px;
+}
+header h1{
+  font-size:3rem;
+  color:#00ffc4;
+}
+header p{
+  color:#94a3b8;
+}
+
+/* TABS */
+.tabs{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  border-bottom:1px solid rgba(0,255,196,0.2);
+  max-width:900px;
+  margin:0 auto;
+}
+
+.tab{
+  padding:12px 5px;
+  cursor:pointer;
+  color:#94a3b8;
+  position:relative;
+  transition:0.3s;
+}
+
+.tab:hover{color:#00ffc4;}
+
+.tab.active{
+  color:#00ffc4;
+}
+
+/* underline animation */
+.tab::after{
+  content:"";
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#00ffc4;
+  transition:0.4s;
+}
+
+.tab.active::after{
+  width:100%;
+}
+
+/* CONTENT AREA */
+.content-area{
+  max-width:900px;
+  margin:40px auto;
+  padding:20px;
+  position:relative;
+}
+
+/* CONTENT BLOCK */
+.content-box{
+  display:none;
+  animation:fade 0.4s ease;
+}
+
+.content-box.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.content-box h2{
+  color:#00ffc4;
+  margin-bottom:15px;
+}
+
+.content-box p{
+  color:#cbd5f5;
+  line-height:1.7;
+  margin-bottom:10px;
+}
+
+/* STAFF STYLE */
+.staff-line{
+  border-left:2px solid #00ffc4;
+  padding-left:12px;
+  margin:10px 0;
+}
+
+/* EDIT PANEL */
+.edit-panel{
+  display:none;
+  max-width:900px;
+  margin:50px auto;
+  padding:20px;
+  background:#020617;
+  border:1px solid #334155;
+  border-radius:10px;
+}
+
+.edit-panel textarea{
+  width:100%;
+  height:120px;
+  margin:10px 0;
+  background:#020617;
+  color:white;
+  border:1px solid #334155;
+  padding:10px;
+}
+
+.edit-panel button{
+  padding:10px;
+  background:#00ffc4;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* BG GLOW */
+body::before{
+  content:"";
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:#00ffc4;
+  filter:blur(140px);
+  opacity:0.08;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    color: #00ffcc;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: #00ffcc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* Hamburger */
+.hamburger {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media(max-width: 900px) {
+  .navbar nav {
+    position: fixed;
+    top: 70px;
+    right: 25%; /* Center it horizontally */
+    left: 25%;  /* 100% - 50% width = 25% on each side */
+    width: 50%; /* 👈 now 50% width */
+    height: auto;
+
+    background: #111;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc;
+
+    display: none;
+  }
+
+  .navbar nav.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar nav a {
+    font-size: 0.85rem; /* smaller text */
+    padding: 6px 0;
+  }
+}
+  * Extra catch for tablets in landscape */
+@media screen and (max-device-width: 1280px) and (orientation: landscape),
+       screen and (max-width: 1280px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0,0,0,0.95);
+        padding: 10px 0;
+        border-top: 2px solid #00ffcc;
+    }
+
+    .nav-links a {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+/* Flex direction for nav container */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo always on the right */
+.nav-logo {
+    order: 2; /* put logo at the end */
+    color: #00ffcc;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/* Nav links and hamburger on the left */
+.nav-links, .hamburger {
+    order: 1; /* move links and hamburger to the start */
+}
+
+/* Mobile / Tablet adjustments remain the same */
+@media screen and (max-width: 1024px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(0,0,0,0.95);
+        padding: 10px 0;
+        border-top: 2px solid #00ffcc;
+    }
+
+    .nav-links a {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+  nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+}
+
+/* LOGO */
+.nav-logo {
+  color: #00ffcc;
+  font-weight: bold;
+  font-size: 1.2em;
+  white-space: nowrap; /* 👈 prevent breaking */
+}
+
+/* LINKS DESKTOP */
+#nav-links {
+  display: flex;
+  gap: 15px;
+  white-space: nowrap; /* 👈 force single line */
+  overflow-x: auto;    /* 👈 if too many links */
+}
+
+#nav-links a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#nav-links a:hover {
+  color: white;
+}
+
+/* HAMBURGER */
+#hamburger {
+  display: none;
+  font-size: 1.8em;
+  color: #00ffcc;
+  cursor: pointer;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  display: none;
+}
+
+/* OVERLAY */
+#overlay {
+  display: none;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width: 900px) {
+
+  #hamburger {
+    display: block;
+  }
+
+  /* Sidebar menu */
+  #nav-links {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100vh;
+    background: #111;
+    flex-direction: column;
+    padding: 60px 20px;
+    gap: 20px;
+    transition: 0.3s;
+    z-index: 1002;
+    border-right: 2px solid #00ffcc;
+    overflow: hidden;
+  }
+
+  #nav-links.active {
+    left: 0;
+  }
+
+  #nav-links a {
+    font-size: 1rem;
+  }
+
+  /* Close button */
+  .close-btn {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #00ffcc;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    color: red;
+  }
+
+  /* Overlay */
+  #overlay.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1001;
+  }
+}
+    nav {
+@media (min-width: 1200px) {
+
+@media (min-width: 901px) {
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px; /* top/bottom and sides */
+  }
+
+  .nav-logo {
+    font-size: 1.5rem; /* logo size */
+    margin-right: 40px; /* space between logo and links */
+  }
+
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px; /* increased gap between links */
+    white-space: nowrap;
+  }
+
+  #nav-links a {
+    font-size: 1rem; /* normal size */
+    margin: 0; /* reset margin */
+    padding: 6px 10px; /* small padding for clickable area */
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  #nav-links a:hover {
+    transform: scale(1.05);
+  }
+
+  /* Hide hamburger + overlay on desktop */
+  #hamburger,
+  #close-btn,
+  #overlay {
+    display: none !important;
+  }
+}
+  
+</style>
+  
+</head>
+<body>
+<nav>
+  <div id="hamburger">☰</div>
+
+  <div class="nav-logo">❄ Elemental Lifesteal SMP ❄</div>
+
+  <div id="nav-links">
+    <div class="close-btn" id="close-btn">✖</div>
+
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="About.html">About</a>
+      <a href="Updates.html">Updates</a>
+    <a href="Contact.html">Contact</a>
+    
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+</nav>
+<header>
+  <h1>About Elemental SMP</h1>
+  <p>Structured. Competitive. Community-driven.</p>
+</header>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(0)">Overview</div>
+  <div class="tab" onclick="switchTab(1)">Server</div>
+  <div class="tab" onclick="switchTab(2)">Community</div>
+  <div class="tab" onclick="switchTab(3)">Team</div>
+  <div class="tab" onclick="switchTab(4)">Vision</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+  <div class="content-box active" id="c1">
+    <h2>Overview</h2>
+    <p id="t1">
+      Elemental SMP is a competitive Lifesteal server built for smooth performance and balanced gameplay. It focuses on skill-based progression, where every fight and decision matters. Players grow stronger through strategy, alliances, and survival, not shortcuts. With an active community and continuous updates, the server delivers a dynamic and engaging experience.
+    </p>
+  </div>
+
+  <div class="content-box" id="c2">
+    <h2>Server Architecture</h2>
+    <p id="t2">
+    Elemental SMP is a public Minecraft server running on Java 1.21.8, designed for Lifesteal gameplay where every decision matters. 
+Players engage in a competitive environment with strategic PvP, skill-based progression, and dynamic events. 
+Our server combines survival depth with custom mechanics to create an immersive and fair experience for both newcomers and veterans.
+    </p>
+  </div>
+
+  <div class="content-box" id="c3">
+    <h2>Community</h2>
+    <p id="t3">
+Our community is built on collaboration, competition, and respect. 
+Players are encouraged to form alliances, participate in server-wide events, and share strategies to thrive in the Lifesteal environment. 
+We prioritize fair play, active engagement, and creating a welcoming space where everyone can enjoy the full depth of the server’s gameplay. 
+From casual players to competitive veterans, the community grows stronger together with each challenge and event.
+    </p>
+  </div>
+
+  <div class="content-box" id="c4">
+    <h2>Staff Team</h2>
+    <p id="t4">
+        The Elemental SMP server is managed by a dedicated team to ensure a fair, engaging, and smoothly running experience. 
+      <b>Owner FearKunj</b> leads the server vision and oversees all operations, while <b>Admin karan027970</b> manages server management tasks. 
+      <b>Moderator manjeetroy127</b> maintains a safe and enjoyable environment for all players, and <b>Helper furyx__yt</b> supports the community with guidance and assistance. 
+      Meanwhile, <b>Developer AuroraEdge</b> constantly works on enhancing gameplay, fixing issues, and introducing new features to keep the server fresh and exciting.
+    </p>
+  </div>
+
+  <div class="content-box" id="c5">
+    <h2>Vision</h2>
+    <p id="t5">
+    Our vision is to create the ultimate Lifesteal experience that blends competitive PvP, strategic survival, 
+and community-driven growth. We aim to build a server where skill, teamwork, and careful decision-making 
+determine success, while offering custom features, regular events, and an evolving world for players to explore.
+    </p>
+  </div>
+
+</div>
+
+<!-- EDIT MODE -->
+<div class="edit-panel" id="editPanel">
+  <h3>Edit Content</h3>
+
+  <textarea id="e1"></textarea>
+  <textarea id="e2"></textarea>
+  <textarea id="e3"></textarea>
+  <textarea id="e4"></textarea>
+  <textarea id="e5"></textarea>
+
+  <button onclick="save()">Save</button>
+</div>
+
+<script>
+/* TAB SWITCH */
+function switchTab(i){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".content-box").forEach(c=>c.classList.remove("active"));
+
+  document.querySelectorAll(".tab")[i].classList.add("active");
+  document.querySelectorAll(".content-box")[i].classList.add("active");
+}
+
+/* LOAD DATA */
+function load(){
+  for(let i=1;i<=5;i++){
+    if(localStorage["t"+i]){
+      document.getElementById("t"+i).innerHTML = localStorage["t"+i];
+    }
+  }
+}
+load();
+
+/* EDIT MODE */
+if(location.search.includes("edit=true")){
+  editPanel.style.display="block";
+  for(let i=1;i<=5;i++){
+    document.getElementById("e"+i).value =
+      document.getElementById("t"+i).innerHTML;
+  }
+}
+
+/* SAVE */
+function save(){
+  for(let i=1;i<=5;i++){
+    localStorage["t"+i] = document.getElementById("e"+i).value;
+  }
+  alert("Saved!");
+  location.reload();
+}
+</script>
+<script src="leaderboard.js"></script>
+</body>
+</html>
