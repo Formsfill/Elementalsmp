@@ -233,6 +233,34 @@ section {
     display: none !important;
   }
 }   
+
+
+
+
+
+  nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allows items to stack on mobile */
+}
+
+#nav-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* wrap links on smaller screens */
+}
+
+@media (max-width: 600px) {
+  #nav-links {
+    flex-direction: column; /* stack links vertically */
+    width: 100%;
+    display: none; /* show when hamburger clicked */
+  }
+  #hamburger {
+    display: block; /* show hamburger on mobile */
+  }
+}
 </style>
    <link rel="stylesheet" href="style.css">
 </head>
