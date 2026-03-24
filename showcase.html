@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrostVeil SMP Showcase</title>
+<style>
+/* ===== Global Styles ===== */
+* {margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body {font-family:Arial,sans-serif; background: linear-gradient(-45deg,#000,#0f2027,#1a1a1a,#203a43); background-size:400% 400%; animation:gradientBG 15s ease infinite; color:white;}
+@keyframes gradientBG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+h1,h2{color:#00ffcc;text-align:center; text-shadow:0 0 12px rgba(0,255,196,0.5);}
+h2{margin-bottom:50px; font-size:2.8em;}
+section{padding:100px 20px; position:relative;}
+a{color:#00ffcc; text-decoration:none;}
+
+/* ===== Navigation ===== */
+nav{background:rgba(0,0,0,0.8);padding:15px;text-align:center;position:fixed;width:100%;top:0;z-index:1000;}
+nav a{margin:0 15px;font-weight:bold;transition:0.3s;}
+nav a:hover{color:white;}
+
+/* ===== Showcase Boxes ===== */
+#showcase-container{max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:30px;}
+.showcase-item{
+  position:relative; padding:35px 30px; border-radius:25px; background:rgba(10,10,10,0.85); border:2px solid rgba(0,255,196,0.2); box-shadow:0 0 30px rgba(0,255,196,0.2); overflow:hidden; transition:0.5s; cursor:pointer;
+}
+.showcase-item:hover{box-shadow:0 0 60px rgba(0,255,196,0.5); transform:scale(1.02);}
+.showcase-item::before{
+  content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle,rgba(0,255,196,0.05) 0%,transparent 70%); animation:rotateGlow 8s linear infinite; z-index:0;
+}
+@keyframes rotateGlow{0%{transform:rotate(0deg) translateX(0);}50%{transform:rotate(180deg) translateX(15px);}100%{transform:rotate(360deg) translateX(0);}}
+.showcase-title{font-size:2em; font-weight:bold; color:#00ffc4; margin-bottom:12px; position:relative; z-index:1;}
+.showcase-desc{font-size:1.05em; color:#ccc; line-height:1.6; margin-bottom:15px; position:relative; z-index:1; opacity:0.95;}
+.showcase-badge{display:inline-block; padding:8px 25px; border-radius:15px; background:linear-gradient(90deg,#ffcc00,#ff9900); color:black; font-weight:bold; font-size:0.95em; position:relative; z-index:1; transition:0.4s;}
+.showcase-badge:hover{transform:scale(1.1); box-shadow:0 0 20px #ffcc00;}
+
+/* ===== Edit Mode Inputs ===== */
+#edit-showcase{display:none; max-width:1000px; margin:30px auto; padding:20px; border:2px solid #00ffcc; border-radius:15px; background:rgba(0,0,0,0.7);}
+#edit-showcase input, #edit-showcase textarea{width:100%; margin:8px 0; padding:12px; border-radius:10px; border:1px solid #00ffcc; background:#0a0a0a; color:white;}
+#edit-showcase button{padding:12px 20px; border:none; border-radius:10px; background:#00ffcc; color:black; font-weight:bold; cursor:pointer; margin-top:10px;}
+#edit-showcase button:hover{background:#00ccaa;}
+
+/* ===== Responsive ===== */
+@media(max-width:600px){
+  .showcase-title{font-size:1.6em;}
+  .showcase-desc{font-size:1em;}
+  .showcase-badge{font-size:0.85em; padding:6px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="store.html">Store</a>
+  <a href="showcase.html">Showcase</a>
+  <a href="updates.html">Updates</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<!-- PROFESSIONAL SHOWCASE INTRO -->
+<!-- PROFESSIONAL SHOWCASE INTRO -->
+<section id="showcase-intro" style="
+    padding: 140px 20px 80px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 20px;
+    max-width: 950px;
+    margin: 100px auto 50px auto;
+    box-shadow: 0 0 40px rgba(0,255,196,0.25);
+    position: relative;
+    overflow: hidden;
+">
+  <!-- subtle animated background lines -->
+  <div style="
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0,255,196,0.05),
+        rgba(0,255,196,0.05) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+      animation: slideLines 10s linear infinite;
+      z-index: 0;
+  "></div>
+
+  <h1 style="
+      font-size: 3em;
+      color: #00ffcc;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(0,255,196,0.5);
+      position: relative;
+      z-index: 1;
+  ">
+    FrostVeil SMP Showcase
+  </h1>
+
+  <p style="
+      font-size: 1.2em;
+      color: #ccc;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      position: relative;
+      z-index: 1;
+  ">
+    Discover the finest builds, creations, and innovations from our dedicated players. From massive survival structures to intricate redstone contraptions, every build showcases creativity and mastery in the FrostVeil Lifesteal SMP world.
+  </p>
+
+  <div style="
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(90deg,#00ffcc,#00ccaa);
+      color: black;
+      font-weight: bold;
+      border-radius: 14px;
+      box-shadow: 0 0 16px rgba(0,255,196,0.4);
+      font-size: 1.1em;
+      position: relative;
+      z-index: 1;
+      transition: 0.3s;
+      cursor: pointer;
+  " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    View Featured Builds
+  </div>
+</section>
+
+<style>
+@keyframes slideLines {
+  0% {transform: translate(0, 0);}
+  50% {transform: translate(50px, 50px);}
+  100% {transform: translate(0, 0);}
+}
+</style>
+<!-- Header -->
+<section id="showcase-header">
+  <h1>🛡️ FrostVeil SMP Showcase</h1>
+  <p style="text-align:center; color:#ccc; margin-top:10px;">Check out amazing player builds and creations!</p>
+</section>
+
+<!-- Showcase Container -->
+<section id="showcase">
+  <div id="showcase-container"></div>
+
+  <!-- Edit Mode (visible with ?edit=true) -->
+  <div id="edit-showcase">
+    <h3>Edit Showcase Items</h3>
+    <div id="showcase-inputs"></div>
+    <button onclick="updateShowcase()">Update Showcase</button>
+  </div>
+</section>
+
+<script>
+// Sample Showcase Data
+let showcaseItems = [
+  {title:"Epic Castle", desc:"A massive castle build by player Alex with automated defenses.", badge:"🏰 Creative"},
+  {title:"Nether Fortress", desc:"A detailed Nether fortress with hidden traps and lava channels.", badge:"🔥 Survival"},
+  {title:"Sky Island Base", desc:"Floating base in the clouds with farms and enchanting rooms.", badge:"☁️ Unique"},
+  {title:"Redstone Contraption", desc:"Advanced redstone machine for auto-farming and doors.", badge:"⚙️ Technical"}
+];
+
+// Render Showcase Items
+function renderShowcase(){
+  const container = document.getElementById("showcase-container");
+  container.innerHTML = "";
+  showcaseItems.forEach((item,index)=>{
+    const div = document.createElement("div");
+    div.className="showcase-item";
+    div.innerHTML = `
+      <div class="showcase-title">${item.title}</div>
+      <div class="showcase-desc">${item.desc}</div>
+      <div class="showcase-badge">${item.badge}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+renderShowcase();
+
+// Check for ?edit=true
+const params = new URLSearchParams(window.location.search);
+if(params.get("edit") === "true"){
+  document.getElementById("edit-showcase").style.display="block";
+  const inputContainer = document.getElementById("showcase-inputs");
+  showcaseItems.forEach((item,index)=>{
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <input type="text" placeholder="Title" value="${item.title}" data-index="${index}" class="edit-title">
+      <textarea placeholder="Description" data-index="${index}" class="edit-desc">${item.desc}</textarea>
+      <input type="text" placeholder="Badge" value="${item.badge}" data-index="${index}" class="edit-badge">
+      <hr style="border-color:#00ffcc;">
+    `;
+    inputContainer.appendChild(div);
+  });
+}
+
+// Update function
+function updateShowcase(){
+  const titles = document.querySelectorAll(".edit-title");
+  const descs = document.querySelectorAll(".edit-desc");
+  const badges = document.querySelectorAll(".edit-badge");
+  titles.forEach((t,i)=>{
+    showcaseItems[i].title = t.value;
+    showcaseItems[i].desc = descs[i].value;
+    showcaseItems[i].badge = badges[i].value;
+  });
+  renderShowcase();
+  alert("Showcase updated!");
+}
+</script>
+
+</body>
+</html>
