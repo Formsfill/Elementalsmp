@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elemental Lifesteal SMP - Leaderb</title>
+<style>
+/* ===== GENERAL STYLES ===== */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #121212;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+a {text-decoration: none; color: #00aaff;}
+h1,h2,h3 {margin: 0;}
+h1 {font-size: 2.5rem; margin-bottom: 15px; text-align:center;}
+h2 {font-size: 2rem; margin-bottom: 30px; text-align:center; color:#00aaff;}
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* ===== LEADERBOARD ===== */
+#top-players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.player-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: #1e1e1e;
+    border-left: 5px solid #00aaff;
+    transition: 0.3s ease;
+    font-weight: bold;
+}
+
+.player-row:hover {
+    background: #252525;
+    box-shadow: 0 4px 12px rgba(0,170,255,0.3);
+}
+
+/* Rank */
+.player-row span.rank {
+    min-width: 40px;
+    color: #00aaff;
+    text-align:center;
+}
+
+/* Medal for top 3 */
+.player-row span.rank.medal {
+    font-size: 1.2rem;
+}
+
+/* Name */
+.player-row span.name {
+    flex:1;
+    text-align:left;
+    color:#fff;
+}
+
+/* Level */
+.player-row span.level {
+    min-width: 60px;
+    text-align:center;
+    color:#ffd700;
+}
+
+/* Title */
+.player-row span.title {
+    min-width: 100px;
+    text-align:center;
+    color:#ccc;
+}
+
+/* Hearts */
+.player-row span.hearts {
+    min-width: 60px;
+    text-align:center;
+    color:#ff5555;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* ===== EDITABLE LEADERBOARD (OPTIONAL) ===== */
+#edit-leaderboard {
+    margin-top: 30px;
+    padding: 15px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    display: none;
+}
+
+#player-inputs div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#player-inputs input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #00aaff;
+    background: #121212;
+    color: #fff;
+    flex: 1 1 100px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background: #00aaff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background: #0077aa;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+    .player-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .player-row span {
+        min-width: auto !important;
+        text-align: left !important;
+    }
+}
+  
+    nav {
+@media (min-width: 1200px) {
+
+@media (min-width: 901px) {
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px; /* top/bottom and sides */
+  }
+
+  .nav-logo {
+    font-size: 1.5rem; /* logo size */
+    margin-right: 40px; /* space between logo and links */
+  }
+
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px; /* increased gap between links */
+    white-space: nowrap;
+  }
+
+  #nav-links a {
+    font-size: 1rem; /* normal size */
+    margin: 0; /* reset margin */
+    padding: 6px 10px; /* small padding for clickable area */
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  #nav-links a:hover {
+    transform: scale(1.05);
+  }
+
+  /* Hide hamburger + overlay on desktop */
+  #hamburger,
+  #close-btn,
+  #overlay {
+    display: none !important;
+  }
+}
+</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div id="hamburger">☰</div>
+
+  <div class="nav-logo">❄ Elemental Lifesteal SMP ❄</div>
+
+  <div id="nav-links">
+    <div class="close-btn" id="close-btn">✖</div>
+
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="About.html">About</a>
+      <a href="Updates.html">Updates</a>
+    <a href="Contact.html">Contact</a>
+    <a href="leaderboard"> Leaderboard</a>
+    
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+</nav>
+<header>
+    <h1>🏆 Elemental Lifesteal SMP</h1>
+    <h2>Top Players Leaderboard</h2>
+</header>
+
+<div class="container">
+    <div id="top-players-list"></div>
+
+    <!-- Optional edit mode -->
+    <div id="edit-leaderboard">
+        <h3>Edit Top Players</h3>
+        <div id="player-inputs"></div>
+        <button onclick="updateLeaderboard()">Update Leaderboard</button>
+    </div>
+</div>
+
+<script>
+// ===== DEFAULT PLAYER DATA =====
+let defaultPlayers = [
+  {name: "DragonSlayer", level: 50, title: "Champion", hearts: 25},
+  {name: "FrostKing", level: 48, title: "Warrior", hearts: 22},
+  {name: "ShadowNinja", level: 45, title: "Assassin", hearts: 18},
+  {name: "NightWalker", level: 40, title: "Rogue", hearts: 15},
+  {name: "BladeMaster", level: 35, title: "Knight", hearts: 12}
+];
+
+const players = JSON.parse(localStorage.getItem('myLeaderboard')) || defaultPlayers;
+const listContainer = document.getElementById("top-players-list");
+const inputsContainer = document.getElementById("player-inputs");
+const editContainer = document.getElementById("edit-leaderboard");
+
+// Show edit inputs if URL has ?edit=true
+if(window.location.search.includes('edit=true') && editContainer){
+    editContainer.style.display = 'block';
+}
+
+// Medal icons for top 3
+const medals = ['🥇','🥈','🥉'];
+
+// Render leaderboard
+function renderLeaderboard(){
+    listContainer.innerHTML = '';
+    players.forEach((player,index)=>{
+        const row = document.createElement('div');
+        row.className = 'player-row';
+        const medal = medals[index] || '';
+        row.innerHTML = `
+            <span class="rank ${medal? 'medal':''}">${medal || '#' + (index+1)}</span>
+            <span class="name">${player.name}</span>
+            <span class="level">Lv ${player.level}</span>
+            <span class="title">${player.title}</span>
+            <span class="hearts">❤️ ${player.hearts}</span>
+        `;
+        listContainer.appendChild(row);
+    });
+}
+
+// Render editable inputs
+function renderInputs(){
+    if(!inputsContainer || !editContainer) return;
+    inputsContainer.innerHTML = '';
+    players.forEach((player,index)=>{
+        const row = document.createElement('div');
+        row.innerHTML=`
+            <input type="text" id="name-${index}" value="${player.name}" placeholder="Name">
+            <input type="number" id="level-${index}" value="${player.level}" placeholder="Level">
+            <input type="text" id="title-${index}" value="${player.title}" placeholder="Title">
+            <input type="number" id="hearts-${index}" value="${player.hearts}" placeholder="Hearts">
+        `;
+        inputsContainer.appendChild(row);
+    });
+}
+
+// Update leaderboard from inputs
+function updateLeaderboard(){
+    players.forEach((player,index)=>{
+        const nameInput = document.getElementById(`name-${index}`);
+        const levelInput = document.getElementById(`level-${index}`);
+        const titleInput = document.getElementById(`title-${index}`);
+        const heartsInput = document.getElementById(`hearts-${index}`);
+        if(nameInput) player.name = nameInput.value;
+        if(levelInput) player.level = parseInt(levelInput.value) || 0;
+        if(titleInput) player.title = titleInput.value;
+        if(heartsInput) player.hearts = parseInt(heartsInput.value) || 0;
+    });
+    localStorage.setItem('myLeaderboard', JSON.stringify(players));
+    renderLeaderboard();
+}
+
+// Initial render
+renderLeaderboard();
+renderInputs();
+</script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>
