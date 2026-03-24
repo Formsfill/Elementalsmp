@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server Updates</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:system-ui,-apple-system,sans-serif;
+  background:#0b1220;
+  color:#e5e7eb;
+}
+
+/* ===== HEADER ===== */
+header{
+  text-align:center;
+  padding:110px 20px 50px;
+}
+header h1{
+  font-size:2.7rem;
+  font-weight:600;
+}
+header p{
+  margin-top:8px;
+  color:#94a3b8;
+}
+
+/* ===== FILTER TABS ===== */
+.filters{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.filters button{
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid #334155;
+  background:#020617;
+  color:#94a3b8;
+  cursor:pointer;
+  transition:0.2s;
+}
+.filters button.active,
+.filters button:hover{
+  background:#2563eb;
+  color:white;
+  border-color:#2563eb;
+}
+
+/* ===== SEARCH ===== */
+.search{
+  max-width:500px;
+  margin:15px auto;
+}
+.search input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #334155;
+  background:#020617;
+  color:white;
+}
+
+/* ===== TIMELINE ===== */
+.timeline{
+  max-width:1000px; /* bigger */
+  margin:70px auto;
+  position:relative;
+  padding-left:40px;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  width:2px;
+  height:100%;
+  background:#1e293b;
+}
+
+/* ===== UPDATE ===== */
+.update{
+  position:relative;
+  margin-bottom:50px;
+  padding:24px 28px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid #1e293b;
+  transition:0.25s;
+}
+
+.update:hover{
+  background:rgba(255,255,255,0.05);
+  border-color:#334155;
+  transform:translateY(-2px);
+}
+
+.update::before{
+  content:"";
+  position:absolute;
+  left:-14px;
+  top:22px;
+  width:10px;height:10px;
+  background:#64748b;
+  border-radius:50%;
+}
+
+/* TEXT */
+.update h3{
+  font-size:1.3rem;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.update small{
+  color:#94a3b8;
+  font-size:0.85rem;
+}
+
+.update p{
+  margin-top:10px;
+  line-height:1.7;
+  font-size:0.95rem;
+  color:#cbd5f5;
+}
+
+/* TAG */
+.tag{
+  display:inline-block;
+  margin-top:12px;
+  padding:5px 12px;
+  font-size:0.75rem;
+  border-radius:6px;
+}
+
+/* TYPE COLORS */
+.tag.update{background:#1e3a8a;color:#bfdbfe;}
+.tag.event{background:#065f46;color:#a7f3d0;}
+.tag.fix{background:#7f1d1d;color:#fecaca;}
+
+/* LATEST */
+.latest{
+  margin-left:8px;
+  font-size:0.7rem;
+  padding:2px 6px;
+  border-radius:5px;
+  background:#2563eb;
+  color:white;
+}
+
+/* EDIT */
+.edit{
+  display:none;
+  margin-top:16px;
+  padding:16px;
+  border-radius:10px;
+  background:#020617;
+  border:1px solid #334155;
+}
+
+/* Inputs */
+.edit input,
+.edit textarea,
+.edit select{
+  width:100%;
+  margin:8px 0;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid #334155;
+  background:#010409;
+  color:#e5e7eb;
+  font-size:0.9rem;
+  transition:0.2s;
+}
+
+/* Focus effect */
+.edit input:focus,
+.edit textarea:focus,
+.edit select:focus{
+  outline:none;
+  border-color:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,0.2);
+}
+
+/* Textarea size */
+.edit textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+/* Delete button */
+.edit button{
+  margin-top:8px;
+  padding:8px 14px;
+  background:#7f1d1d;
+  color:#fecaca;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.edit button:hover{
+  background:#991b1b;
+}
+/* BUTTON */
+#addBtn{
+  display:none;
+  margin:50px auto;
+  padding:12px 22px;
+  font-size:0.9rem;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+#addBtn:hover{
+  background:#1d4ed8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Updates</h1>
+  <p>Latest changes and announcements</p>
+</header>
+<div class="filters">
+  <button onclick="setFilter('all')" class="active">All</button>
+  <button onclick="setFilter('update')">Updates</button>
+  <button onclick="setFilter('event')">Events</button>
+  <button onclick="setFilter('fix')">Fixes</button>
+</div>
+<div class="search">
+  <input type="text" id="search" placeholder="Search updates...">
+</div>
+
+<div class="timeline" id="timeline"></div>
+
+<button id="addBtn">Add Update</button>
+
+<script>
+const isEdit = new URLSearchParams(location.search).get("edit") === "true";
+
+let currentFilter = "all";
+
+let updates = JSON.parse(localStorage.getItem("updates")) || [
+  {
+    title:"Season Launch",
+    date:"2026-03-20",
+    desc:"Initial release of the server with core gameplay systems.",
+    type:"event"
+  },
+  {
+    title:"PvP Update",
+    date:"2026-03-22",
+    desc:"Improved combat balancing and player interactions.",
+    type:"update"
+  },
+  {
+    title:"Bug Fix Patch",
+    date:"2026-03-23",
+    desc:"Resolved duplication glitch and optimized performance.",
+    type:"fix"
+  }
+];
+
+const timeline = document.getElementById("timeline");
+const addBtn = document.getElementById("addBtn");
+
+// FILTER
+function setFilter(type){
+  currentFilter = type;
+  document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+  render();
+}
+
+// RENDER
+function render(search=""){
+  timeline.innerHTML="";
+
+  updates
+    .filter(u => (currentFilter==="all" || u.type===currentFilter))
+    .filter(u => u.title.toLowerCase().includes(search.toLowerCase()))
+    .forEach((u,i)=>{
+      const div=document.createElement("div");
+      div.className="update";
+
+      div.innerHTML=`
+        <h3>${u.title} ${i===0?'<span class="latest">Latest</span>':''}</h3>
+        <small>${u.date}</small>
+        <p>${u.desc}</p>
+        <span class="tag ${u.type}">${u.type}</span>
+
+        ${isEdit?`
+        <div class="edit">
+          <input value="${u.title}" data-i="${i}" class="t">
+          <input value="${u.date}" data-i="${i}" class="d">
+          <select data-i="${i}" class="ty">
+            <option ${u.type=="update"?"selected":""}>update</option>
+            <option ${u.type=="event"?"selected":""}>event</option>
+            <option ${u.type=="fix"?"selected":""}>fix</option>
+          </select>
+          <textarea data-i="${i}" class="de">${u.desc}</textarea>
+          <button onclick="del(${i})">Delete</button>
+        </div>`:""}
+      `;
+
+      timeline.appendChild(div);
+    });
+
+  if(isEdit){
+    document.querySelectorAll(".edit").forEach(e=>e.style.display="block");
+    addBtn.style.display="block";
+    attach();
+  }
+}
+
+// EDIT
+function attach(){
+  document.querySelectorAll(".t").forEach(e=>{
+    e.oninput=ev=>{updates[ev.target.dataset.i].title=ev.target.value;save();}
+  });
+  document.querySelectorAll(".d").forEach(e=>{
+    e.oninput=ev=>{updates[ev.target.dataset.i].date=ev.target.value;save();}
+  });
+  document.querySelectorAll(".de").forEach(e=>{
+    e.oninput=ev=>{updates[ev.target.dataset.i].desc=ev.target.value;save();}
+  });
+  document.querySelectorAll(".ty").forEach(e=>{
+    e.onchange=ev=>{updates[ev.target.dataset.i].type=ev.target.value;save();}
+  });
+}
+
+// ADD
+addBtn.onclick=()=>{
+  updates.unshift({
+    title:"New Update",
+    date:new Date().toISOString().split('T')[0],
+    desc:"Write your update here.",
+    type:"update"
+  });
+  save();
+  render();
+};
+
+// DELETE
+function del(i){
+  updates.splice(i,1);
+  save();
+  render();
+}
+
+// SAVE
+function save(){
+  localStorage.setItem("updates",JSON.stringify(updates));
+}
+
+// SEARCH
+document.getElementById("search").oninput=(e)=>{
+  render(e.target.value);
+};
+
+render();
+</script>
+
+</body>
+</html>
