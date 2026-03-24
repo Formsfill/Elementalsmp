@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enquiry & Knowledge Base - Elemental SMP</title>
+<style>
+/* ===== RESET & BASE ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
+body{background:#0b1220;color:#e5e7eb;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+
+/* ===== HEADER ===== */
+header{text-align:center;padding:120px 20px 60px;}
+header h1{font-size:2.8rem;color:#00ffc4;}
+header p{margin-top:10px;color:#94a3b8;font-size:1.1rem;}
+
+/* ===== CONTAINER ===== */
+.container{max-width:1000px;margin:0 auto;padding:20px;}
+
+/* ===== ENQUIRY FORM ===== */
+.form-card{
+  background:rgba(255,255,255,0.03);
+  border-radius:16px;
+  padding:32px;
+  box-shadow:0 0 40px rgba(0,255,196,0.05);
+  margin-bottom:60px;
+  transition:0.3s;
+}
+.form-card:hover{box-shadow:0 0 60px rgba(0,255,196,0.2);}
+.form-card h2{color:#00ffc4;margin-bottom:20px;}
+.form-group{margin-bottom:20px;}
+label{display:block;margin-bottom:6px;color:#94a3b8;font-size:0.9rem;}
+input, textarea, select{
+  width:100%;
+  padding:14px 16px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#020617;
+  color:#e5e7eb;
+  font-size:0.95rem;
+  transition:0.25s;
+}
+input:focus, textarea:focus, select:focus{
+  outline:none;
+  border-color:#00ffc4;
+  box-shadow:0 0 0 2px rgba(0,255,196,0.2);
+}
+textarea{min-height:140px;resize:vertical;}
+button{
+  padding:14px 22px;
+  font-size:1rem;
+  border:none;
+  border-radius:10px;
+  background:#00ffc4;
+  color:#0b1220;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.25s;
+}
+button:hover{background:#00e5b5;transform:scale(1.03);}
+.success{display:none;margin-top:15px;padding:12px;border-radius:10px;background:#065f46;color:#a7f3d0;font-size:0.95rem;}
+
+/* ===== KNOWLEDGE BASE / ENQUIRY TIMELINE ===== */
+.knowledge-base{
+  position:relative;
+  margin-top:60px;
+}
+.kb-line{
+  position:absolute;
+  left:50%;
+  width:4px;
+  background:#00ffc4;
+  top:0;
+  bottom:0;
+  transform:translateX(-50%);
+  border-radius:4px;
+}
+/* Knowledge Box */
+.kb-item {
+  position: relative;
+  background: #0b1220;
+  border: 2px solid #00ffc4;
+  border-radius: 15px;
+  padding: 20px 20px 20px 40px; /* space for circle top-left */
+  margin: 25px 0;
+  transition: background 0.3s;
+}
+
+/* Small circle top-left */
+.kb-item::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #00ffc4;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Filled state */
+.kb-item.active::before {
+  background: #00ffc4;
+  transform: scale(1.2);
+  box-shadow: 0 0 8px #00ffc4;
+}
+/* ===== EDIT MODE ===== */
+.edit{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  border-radius:12px;
+  background:#010409;
+  border:1px solid #334155;
+}
+.edit textarea{width:100%;padding:12px;margin:8px 0;border-radius:8px;background:#020617;color:#e5e7eb;border:1px solid #334155;}
+.edit button{margin-top:8px;background:#2563eb;color:white;padding:10px 16px;border-radius:8px;cursor:pointer;}
+.edit button:hover{background:#1d4ed8;}
+
+/* ===== MOBILE ===== */
+@media(max-width:800px){
+  .kb-item{width:90%;left:0;transform:none;margin-left:5%;}
+  .kb-item.left::after,.kb-item.right::after{left:-12px;right:auto;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>📝 Server Enquiries & Updates</h1>
+<p>Have a question or need help? Submit your enquiry here and stay updated with server news, events, and announcements.</p>
+</header>
+
+<div class="container">
+
+  <!-- ENQUIRY FORM -->
+  <div class="form-card">
+    <h2>📩 Make an Enquiry</h2>
+    <form id="enquiryForm">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select required>
+          <option value="">Select Category</option>
+          <option>General Question</option>
+          <option>Bug Report</option>
+          <option>Whitelist Issue</option>
+          <option>Ban Appeal</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Write your enquiry..." required></textarea>
+      </div>
+      <button type="submit">Send Enquiry</button>
+      <div class="success" id="successMsg">✅ Enquiry submitted successfully (demo)</div>
+    </form>
+
+    <!-- Editable Instructions -->
+    <div class="edit" id="editForm">
+      <h3>Edit Enquiry Instructions (Admin)</h3>
+      <textarea>Welcome! Fill out the form to send an enquiry. Our team will respond ASAP.</textarea>
+      <button>Save</button>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE BASE / TIMELINE -->
+  <div class="knowledge-base">
+    <div class="kb-line"></div>
+
+    <div class="kb-item left">
+      <h3>How to Join the Server?</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Replace this with joining instructions.</p>
+    </div>
+
+    <div class="kb-item right">
+      <h3>How to Get Whitelisted?</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Add your whitelist process here.</p>
+    </div>
+
+    <div class="kb-item left">
+      <h3>What is Lifesteal?</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Explain gameplay mechanics here.</p>
+    </div>
+
+    <div class="kb-item right">
+      <h3>Reporting Bugs</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Describe how to report issues.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// Demo form submission
+document.getElementById("enquiryForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  document.getElementById("successMsg").style.display="block";
+  this.reset();
+});
+
+// Show edit section if ?edit=true
+if(location.search.includes("edit=true")){
+  document.getElementById("editForm").style.display="block";
+}
+    <script>
+const kbItems = document.querySelectorAll('.kb-item');
+
+kbItems.forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active'); // fill/unfill the circle
+  });
+});
+</script>
+</script>
+
+</body>
+</html>
