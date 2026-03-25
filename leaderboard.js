@@ -41,21 +41,19 @@ function copyIP(){
 // ============================
 
 
-    fetch("https://cors-anywhere.herokuapp.com/https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
-    .then(res => res.json())
-    .then(data => {
-        if(data.online){
-            const online = data.players?.online ?? 0;
-            const max = data.players?.max ?? "?";
-            statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
-        } else {
-            statusElem.innerHTML = "🔴 Server Offline";
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        statusElem.innerHTML = "⚠ Unable to fetch server status";
-    });
+  fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me"))
+.then(res => res.json())
+.then(proxyData => {
+    const data = JSON.parse(proxyData.contents);
+    if(data.online){
+        statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
+    } else {
+        statusElem.innerHTML = "🔴 Server Offline";
+    }
+})
+.catch(() => {
+    statusElem.innerHTML = "⚠ Unable to fetch server status";
+});
 }
 // ============================
 // Leaderboard + Private Edit Mode
