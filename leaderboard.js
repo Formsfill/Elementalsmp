@@ -41,17 +41,20 @@ function copyIP(){
 // ============================
 
 
-  fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me"))
+ const statusElem = document.getElementById("server-status");
+
+fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me"))
 .then(res => res.json())
 .then(proxyData => {
     const data = JSON.parse(proxyData.contents);
     if(data.online){
-        statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
+        statusElem.innerHTML = `🟢 Server Online | Players: ${data.players?.online ?? 0}/${data.players?.max ?? "?"}`;
     } else {
         statusElem.innerHTML = "🔴 Server Offline";
     }
 })
-.catch(() => {
+.catch(err => {
+    console.error(err);
     statusElem.innerHTML = "⚠ Unable to fetch server status";
 });
 
