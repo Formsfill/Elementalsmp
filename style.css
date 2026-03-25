@@ -285,48 +285,7 @@ footer {
         width: 100%;
         text-align: center;
     }
-          nav {
-@media (min-width: 1200px) {
-
-@media (min-width: 901px) {
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 50px; /* top/bottom and sides */
-  }
-
-  .nav-logo {
-    font-size: 1.5rem; /* logo size */
-    margin-right: 40px; /* space between logo and links */
-  }
-
-  #nav-links {
-    display: flex;
-    align-items: center;
-    gap: 35px; /* increased gap between links */
-    white-space: nowrap;
-  }
-
-  #nav-links a {
-    font-size: 1rem; /* normal size */
-    margin: 0; /* reset margin */
-    padding: 6px 7px; /* small padding for clickable area */
-    transition: color 0.3s, transform 0.3s;
-  }
-
-  #nav-links a:hover {
-    transform: scale(1.05);
-  }
-
-  /* Hide hamburger + overlay on desktop */
-  #hamburger,
-  #close-btn,
-  #overlay {
-    display: none !important;
-  }
-}
+          
 
     .hamburger {
         display: block;
