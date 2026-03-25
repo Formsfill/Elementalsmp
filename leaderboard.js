@@ -39,9 +39,8 @@ function copyIP(){
 // ============================
 // Live Server Status
 // ============================
-const statusElem = document.getElementById("server-status");
 
-if(statusElem){
+
     fetch("https://cors-anywhere.herokuapp.com/https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
     .then(res => res.json())
     .then(data => {
