@@ -54,7 +54,7 @@ function copyIP(){
 .catch(() => {
     statusElem.innerHTML = "⚠ Unable to fetch server status";
 });
-}
+
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
