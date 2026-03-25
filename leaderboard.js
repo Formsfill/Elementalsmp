@@ -39,19 +39,18 @@ function copyIP(){
 // ============================
 // Live Server Status
 // ============================
-fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me"))
-.then(res => res.json())
-.then(proxyData => {
-    const data = JSON.parse(proxyData.contents);
-    if(data.online){
-        statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
-    } else {
-        statusElem.innerHTML = "🔴 Server Offline";
-    }
-})
-.catch(() => {
-    statusElem.innerHTML = "⚠ Unable to fetch server status";
-});
+fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
+    .then(res => res.json())
+    .then(data => {
+        if(data.online){
+            statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
+        } else {
+            statusElem.innerHTML = "🔴 Server Offline";
+        }
+    })
+    .catch(() => {
+        statusElem.innerHTML = "⚠ Unable to fetch server status";
+    });
 }
 
 // ============================
