@@ -59,12 +59,15 @@ async function fetchStatus(){
         if(typeof online === "number" && typeof max === "number"){
             statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
         } 
-     
+        // ⚠️ No player data (Aternos issue)
+        else {
+            statusElem.innerHTML = "🟢 Server Online | Players: ?";
+        }
     } 
     else {
         // 🔥 Aternos fallback (server likely online but ping blocked)
         if(data.ip_address){
-         statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
+            statusElem.innerHTML = "🟢 Server Online | Players: ?";
         } else {
             statusElem.innerHTML = "🔴 Server Offline";
         }
