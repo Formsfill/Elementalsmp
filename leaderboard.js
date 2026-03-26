@@ -43,21 +43,38 @@ function copyIP(){
 
 
 
-    fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
-    .then(res => res.json())
-    .then(data => {
-        if(data.online && data.players){
-            statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
-        } else if(data.online){
+  const statusElem = document.getElementById("server-status");
+
+async function fetchStatus(){
+  try{
+    const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
+    const data = await res.json();
+
+    console.log(data); // debug
+
+    if(data.online){
+        const playersOnline = data.players?.online ?? 0;
+        const playersMax = data.players?.max ?? 0;
+
+        // Extra accuracy check
+        if(playersMax === 0){
             statusElem.innerHTML = "🟡 Server Starting...";
         } else {
-            statusElem.innerHTML = "🔴 Server Offline";
+            statusElem.innerHTML = `🟢 Server Online | Players: ${playersOnline}/${playersMax}`;
         }
-    })
-    .catch(() => {
-        statusElem.innerHTML = "⚠ Unable to fetch server status";
-    });
+
+    } else {
+        statusElem.innerHTML = "🔴 Server Offline";
+    }
+
+  } catch(err){
+    statusElem.innerHTML = "⚠ Unable to fetch server status";
+  }
 }
+
+// Run + auto refresh
+fetchStatus();
+setInterval(fetchStatus, 8000);
 
 fetchStatus();
 setInterval(fetchStatus, 10000); // refresh every 10 sec
