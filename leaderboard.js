@@ -77,9 +77,7 @@ async function fetchStatus() {
   }
 }
 
-// Initial fetch + auto refresh every 10 seconds
-fetchStatus();
-setInterval(fetchStatus, 10000);
+
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
