@@ -881,6 +881,27 @@ staffMembers.forEach(member=>{
   `;
   container.appendChild(div);
 });
+    async function updateServerStatus() {
+    const statusElem = document.getElementById("server-status");
+    try {
+        const response = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
+        const data = await response.json();
+        if(data.online) {
+            const playersOnline = data.players?.online ?? 0;
+            const maxPlayers = data.players?.max ?? 100;
+            statusElem.innerText = `Online Players: ${playersOnline} / ${maxPlayers}`;
+        } else {
+            statusElem.innerText = "Server is offline";
+        }
+    } catch (e) {
+        console.error(e);
+        statusElem.innerText = "Unable to fetch server status";
+    }
+}
+
+// Update every 30 seconds
+updateServerStatus();
+setInterval(updateServerStatus, 30000);
     
     
 </script>
