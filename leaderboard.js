@@ -64,7 +64,7 @@ async function fetchStatus(){
     else {
         // 🔥 Aternos fallback (server likely online but ping blocked)
         if(data.ip_address){
-            statusElem.innerHTML = "🟢 Server Online | Players: ?";
+         statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
         } else {
             statusElem.innerHTML = "🔴 Server Offline";
         }
