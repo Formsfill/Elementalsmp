@@ -43,28 +43,30 @@ function copyIP(){
 
 
 
-  const statusElem = document.getElementById("server-status");
+ const statusElem = document.getElementById("server-status");
 
 async function fetchStatus(){
+  statusElem.innerHTML = "⏳ Checking server...";
+
   try{
     const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
     const data = await res.json();
 
-    console.log(data); // debug
+    console.log(data);
 
     if(data.online){
-        const playersOnline = data.players?.online ?? 0;
-        const playersMax = data.players?.max ?? 0;
-
-        // Extra accuracy check
-        if(playersMax === 0){
-            statusElem.innerHTML = "🟡 Server Starting...";
+        const online = data.players?.online ?? 0;
+        const max = data.players?.max ?? 0;
+        statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
+    } 
+    else {
+        // 🔥 SMART FALLBACK
+        // If IP exists, server likely running but ping blocked
+        if(data.ip_address){
+            statusElem.innerHTML = "🟡 Server Online (Ping Blocked)";
         } else {
-            statusElem.innerHTML = `🟢 Server Online | Players: ${playersOnline}/${playersMax}`;
+            statusElem.innerHTML = "🔴 Server Offline";
         }
-
-    } else {
-        statusElem.innerHTML = "🔴 Server Offline";
     }
 
   } catch(err){
@@ -72,13 +74,8 @@ async function fetchStatus(){
   }
 }
 
-// Run + auto refresh
 fetchStatus();
-setInterval(fetchStatus, 8000);
-
-fetchStatus();
-setInterval(fetchStatus, 10000); // refresh every 10 sec
- 
+setInterval(fetchStatus, 10000);
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
