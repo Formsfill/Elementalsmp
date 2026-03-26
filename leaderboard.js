@@ -43,7 +43,7 @@ function copyIP(){
 
 
 
- const statusElem = document.getElementById("server-status");
+const statusElem = document.getElementById("server-status");
 
 async function fetchStatus(){
   statusElem.innerHTML = "⏳ Checking server...";
@@ -55,15 +55,22 @@ async function fetchStatus(){
     console.log(data);
 
     if(data.online){
-        const online = data.players?.online ?? 0;
-        const max = data.players?.max ?? 0;
-        statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
+        const online = data.players?.online;
+        const max = data.players?.max;
+
+        // ✅ If player data exists → show it
+        if(typeof online === "number" && typeof max === "number"){
+            statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
+        } 
+        // ⚠️ No player data (Aternos issue)
+        else {
+            statusElem.innerHTML = "🟢 Server Online | Players: ?";
+        }
     } 
     else {
-        // 🔥 SMART FALLBACK
-        // If IP exists, server likely running but ping blocked
+        // 🔥 Aternos fallback (server likely online but ping blocked)
         if(data.ip_address){
-            statusElem.innerHTML = "🟡 Server Online (Ping Blocked)";
+            statusElem.innerHTML = "🟢 Server Online | Players: ?";
         } else {
             statusElem.innerHTML = "🔴 Server Offline";
         }
@@ -74,8 +81,9 @@ async function fetchStatus(){
   }
 }
 
+// Run + refresh
 fetchStatus();
-setInterval(fetchStatus, 10000);
+setInterval(fetchStatus, 8000);
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
