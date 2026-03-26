@@ -45,34 +45,39 @@ function copyIP(){
 
 const statusElem = document.getElementById("server-status");
 
-async function fetchStatus(){
+async function fetchStatus() {
   statusElem.innerHTML = "⏳ Checking server...";
 
-  try{
+  try {
     const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
     const data = await res.json();
 
-    console.log(data);
+    // console.log(data); // useful for debugging
 
-    if(data.online){
-        const online = data.players?.online ?? "?";
-        const max = data.players?.max ?? "?";
+    // Check if online
+    if (data.online) {
+      // Check if player info exists
+      const online = data.players?.online;
+      const max = data.players?.max ?? 100; // default max 100
+
+      if (typeof online === "number") {
         statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
-    } 
-    else {
-        // 🔥 Treat Aternos as online if IP exists
-        if(data.ip_address){
-            statusElem.innerHTML = "🟢 Server Online";
-        } else {
-            statusElem.innerHTML = "🔴 Server Offline";
-        }
+      } else {
+        // fallback when Aternos blocks player info
+        statusElem.innerHTML = `🟢 Server Online | Players: ?/${max}`;
+      }
+    } else {
+      // offline fallback
+      statusElem.innerHTML = "🔴 Server Offline";
     }
 
-  } catch(err){
+  } catch (err) {
     statusElem.innerHTML = "⚠ Unable to fetch server status";
+    console.error(err);
   }
 }
 
+// Initial fetch + auto refresh every 10 seconds
 fetchStatus();
 setInterval(fetchStatus, 10000);
 // ============================
