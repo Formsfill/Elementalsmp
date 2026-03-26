@@ -42,32 +42,27 @@ function copyIP(){
 
 
 
-
 const statusElem = document.getElementById("server-status");
 
 async function fetchStatus() {
   statusElem.innerHTML = "⏳ Checking server...";
 
   try {
-    const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
+    const res = await fetch("https://api.mcstatus.io/v2/status/java/knifejaw.aternos.host");
     const data = await res.json();
 
-    // console.log(data); // useful for debugging
+    // console.log(data);
 
-    // Check if online
     if (data.online) {
-      // Check if player info exists
       const online = data.players?.online;
-      const max = data.players?.max ?? 100; // default max 100
+      const max = data.players?.max ?? 100; // default max
 
       if (typeof online === "number") {
         statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
       } else {
-        // fallback when Aternos blocks player info
         statusElem.innerHTML = `🟢 Server Online | Players: ?/${max}`;
       }
     } else {
-      // offline fallback
       statusElem.innerHTML = "🔴 Server Offline";
     }
 
@@ -77,7 +72,9 @@ async function fetchStatus() {
   }
 }
 
-
+// Initial fetch + refresh every 10 seconds
+fetchStatus();
+setInterval(fetchStatus, 10000);
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
