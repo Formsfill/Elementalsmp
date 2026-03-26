@@ -43,7 +43,7 @@ function copyIP(){
 const statusElem = document.getElementById("server-status");
 
 async function fetchStatus(){
-  statusElem.innerHTML = "⏳ Checking server...";
+  statusElem.innerHTML = "Checking server status...";
 
   try{
     const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
