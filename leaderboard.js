@@ -43,11 +43,14 @@ function copyIP(){
 
  const statusElem = document.getElementById("server-status");
 if(statusElem){
+function fetchStatus(){
     fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
     .then(res => res.json())
     .then(data => {
-        if(data.online){
+        if(data.online && data.players){
             statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
+        } else if(data.online){
+            statusElem.innerHTML = "🟡 Server Starting...";
         } else {
             statusElem.innerHTML = "🔴 Server Offline";
         }
@@ -56,6 +59,9 @@ if(statusElem){
         statusElem.innerHTML = "⚠ Unable to fetch server status";
     });
 }
+
+fetchStatus();
+setInterval(fetchStatus, 10000); // refresh every 10 sec
  
 // ============================
 // Leaderboard + Private Edit Mode
