@@ -56,7 +56,7 @@ if(statusElem){
         statusElem.innerHTML = "⚠ Unable to fetch server status";
     });
 }
-
+ 
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
