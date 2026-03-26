@@ -48,14 +48,13 @@ async function fetchStatus() {
   statusElem.innerHTML = "⏳ Checking server...";
 
   try {
-    const res = await fetch("https://api.mcstatus.io/v2/status/java/knifejaw.aternos.host");
+    // Use hostname only, without port
+    const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
     const data = await res.json();
-
-    // console.log(data);
 
     if (data.online) {
       const online = data.players?.online;
-      const max = data.players?.max ?? 100; // default max
+      const max = data.players?.max ?? 100; // fallback max
 
       if (typeof online === "number") {
         statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
@@ -72,7 +71,6 @@ async function fetchStatus() {
   }
 }
 
-// Initial fetch + refresh every 10 seconds
 fetchStatus();
 setInterval(fetchStatus, 10000);
 // ============================
