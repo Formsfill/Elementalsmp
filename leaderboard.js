@@ -41,22 +41,46 @@ function copyIP(){
 // ============================
 
 const statusElem = document.getElementById("server-status");
-if(statusElem){
-    fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
-    .then(res => res.json())
-    .then(data => {
-        if(data.online){
-            statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
+
+async function fetchStatus(){
+  statusElem.innerHTML = "⏳ Checking server...";
+
+  try{
+    const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
+    const data = await res.json();
+
+    console.log(data);
+
+    if(data.online){
+        const online = data.players?.online;
+        const max = data.players?.max;
+
+        // ✅ If player data exists → show it
+        if(typeof online === "number" && typeof max === "number"){
+            statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
+        } 
+        // ⚠️ No player data (Aternos issue)
+        else {
+            statusElem.innerHTML = "🟢 Server Online | Players: ?";
+        }
+    } 
+    else {
+        // 🔥 Aternos fallback (server likely online but ping blocked)
+        if(data.ip_address){
+            statusElem.innerHTML = "🟢 Server Online | Players: ?";
         } else {
             statusElem.innerHTML = "🔴 Server Offline";
         }
-    })
-    .catch(() => {
-        statusElem.innerHTML = "⚠ Unable to fetch server status";
-    });
+    }
+
+  } catch(err){
+    statusElem.innerHTML = "⚠ Unable to fetch server status";
+  }
 }
 
-
+// Run + refresh
+fetchStatus();
+setInterval(fetchStatus, 8000);
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
