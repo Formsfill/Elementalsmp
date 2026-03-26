@@ -40,7 +40,21 @@ function copyIP(){
 // Live Server Status
 // ============================
 
-
+const statusElem = document.getElementById("server-status");
+if(statusElem){
+    fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
+    .then(res => res.json())
+    .then(data => {
+        if(data.online){
+            statusElem.innerHTML = `🟢 Server Online | Players: ${data.players.online}/${data.players.max}`;
+        } else {
+            statusElem.innerHTML = "🔴 Server Offline";
+        }
+    })
+    .catch(() => {
+        statusElem.innerHTML = "⚠ Unable to fetch server status";
+    });
+}
 
 
 // ============================
