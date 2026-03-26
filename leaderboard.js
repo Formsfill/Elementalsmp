@@ -43,7 +43,7 @@ function copyIP(){
 
  const statusElem = document.getElementById("server-status");
 if(statusElem){
-    fetch("https://api.mcsrvstat.us/2/frostveill.falixsrv.me")
+    fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
     .then(res => res.json())
     .then(data => {
         if(data.online){
