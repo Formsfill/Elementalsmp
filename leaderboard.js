@@ -42,37 +42,7 @@ function copyIP(){
 
 
 
-const statusElem = document.getElementById("server-status");
 
-async function fetchStatus() {
-  statusElem.innerHTML = "⏳ Checking server...";
-
-  try {
-    // Use hostname only, without port
-    const res = await fetch("https://api.mcstatus.io/v2/status/java/ElementalSMPv3.aternos.me");
-    const data = await res.json();
-
-    if (data.online) {
-      const online = data.players?.online;
-      const max = data.players?.max ?? 100; // fallback max
-
-      if (typeof online === "number") {
-        statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
-      } else {
-        statusElem.innerHTML = `🟢 Server Online | Players: ?/${max}`;
-      }
-    } else {
-      statusElem.innerHTML = "🔴 Server Offline";
-    }
-
-  } catch (err) {
-    statusElem.innerHTML = "⚠ Unable to fetch server status";
-    console.error(err);
-  }
-}
-
-fetchStatus();
-setInterval(fetchStatus, 10000);
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
