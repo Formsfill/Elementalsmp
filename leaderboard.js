@@ -41,9 +41,8 @@ function copyIP(){
 // ============================
 
 
- const statusElem = document.getElementById("server-status");
-if(statusElem){
-function fetchStatus(){
+
+
     fetch("https://api.mcsrvstat.us/2/ElementalSMPv3.aternos.me")
     .then(res => res.json())
     .then(data => {
