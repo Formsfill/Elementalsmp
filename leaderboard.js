@@ -55,22 +55,14 @@ async function fetchStatus(){
     console.log(data);
 
     if(data.online){
-        const online = data.players?.online;
-        const max = data.players?.max;
-
-        // ✅ If player data exists → show it
-        if(typeof online === "number" && typeof max === "number"){
-            statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
-        } 
-        // ⚠️ No player data (Aternos issue)
-        else {
-            statusElem.innerHTML = "🟢 Server Online | Players: ?";
-        }
+        const online = data.players?.online ?? "?";
+        const max = data.players?.max ?? "?";
+        statusElem.innerHTML = `🟢 Server Online | Players: ${online}/${max}`;
     } 
     else {
-        // 🔥 Aternos fallback (server likely online but ping blocked)
+        // 🔥 Treat Aternos as online if IP exists
         if(data.ip_address){
-            statusElem.innerHTML = "🟢 Server Online | Players: ?";
+            statusElem.innerHTML = "🟢 Server Online";
         } else {
             statusElem.innerHTML = "🔴 Server Offline";
         }
@@ -81,9 +73,8 @@ async function fetchStatus(){
   }
 }
 
-// Run + refresh
 fetchStatus();
-setInterval(fetchStatus, 8000);
+setInterval(fetchStatus, 10000);
 // ============================
 // Leaderboard + Private Edit Mode
 // ============================
