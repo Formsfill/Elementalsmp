@@ -709,7 +709,7 @@ nav {
 /* ===== JOIN SECTION ===== */
 .join-section {
     padding: 5rem 2rem;
-    background: rgba(10, 15, 20, 0.95);
+     background: linear-gradient(-45deg,#000,#0f2027,#1a1a1a,#203a43);
 }
 
 .join-container {
