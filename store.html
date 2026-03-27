@@ -56,17 +56,24 @@ a{text-decoration:none;color:#ffcc00;}
 .tablist tr:nth-child(even){background:rgba(255,255,255,0.05);}
 .tablist tr:hover{background:rgba(255,204,0,0.2);cursor:pointer;}
  
-
 nav {
-  width: 100%;
-  max-width: 100%;
   position: relative;
+  width: 100vw;        /* force full screen width */
+  left: 50%;
+  transform: translateX(-50%);  /* fix alignment */
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding: 15px 50px;
+}
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+ * {
+  max-width: 100%;
 }
 /* ===== MOBILE ===== */
 @media(max-width:800px){
