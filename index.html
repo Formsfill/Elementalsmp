@@ -731,7 +731,928 @@ header p{color:#aaa;font-size:1.2em;}
   </form>
 </section>
 
-<!-- Store Section -->
+  
+      /* ===== ZALREN SMP COMPLETE CSS ===== */
+        /* All CSS in one file - No external files needed! */
+        
+        /* ===== RESET &amp; VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --mc-green: #4CAF50;
+            --mc-dark-green: #2E7D32;
+            --mc-dirt: #8B7355;
+            --mc-stone: #848484;
+            --mc-water: #87CEEB;
+            --mc-lava: #FF5722;
+            --mc-dark: #1a1a1a;
+            --mc-darker: #0a0a0a;
+            --mc-light: #f0f0f0;
+            --discord: #5865F2;
+            --java: #F89820;
+            --bedrock: #00B0F4;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: &#39;Roboto&#39;, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1b1d 100%);
+            color: var(--mc-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .mc-font {
+            font-family: &#39;Minecraft&#39;, monospace;
+            letter-spacing: 1px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px var(--mc-green); }
+            50% { box-shadow: 0 0 25px var(--mc-green); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--mc-green); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                text-shadow: 0 0 10px var(--mc-green), 
+                           0 0 20px var(--mc-green);
+            }
+            50% { 
+                text-shadow: 0 0 20px var(--mc-green), 
+                           0 0 40px var(--mc-green);
+            }
+        }
+
+        /* ===== BACKGROUND EFFECTS ===== */
+        .bg-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 115, 85, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(135, 206, 235, 0.1) 0%, transparent 50%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(76, 175, 80, 0.05) 2px, rgba(76, 175, 80, 0.05) 4px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ===== NAVIGATION ===== */
+  
+
+   
+
+
+
+        /* ===== HERO SECTION ===== */
+       
+        /* IP Box */
+        .server-ip-box {
+            background: rgba(20, 25, 30, 0.9);
+            border: 3px solid var(--mc-green);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .server-ip-box h3 {
+            color: var(--mc-green);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ip-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        #server-ip {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.8rem;
+            font-family: &#39;Minecraft&#39;, monospace;
+            color: var(--mc-green);
+            border: 2px dashed var(--mc-green);
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, var(--mc-green), var(--mc-dark-green));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .ip-notes {
+            color: var(--mc-water);
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .ip-notes p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Hero Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .join-btn {
+            background: linear-gradient(135deg, var(--mc-dirt), #6B5A45);
+            color: white;
+            border: 2px solid #A0522D;
+        }
+
+        .join-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 115, 85, 0.4);
+        }
+
+        .discord-btn-large {
+            background: linear-gradient(135deg, var(--discord), #7289DA);
+            color: white;
+        }
+
+        .discord-btn-large:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.4);
+        }
+
+        .rules-btn {
+            background: linear-gradient(135deg, var(--mc-dark-green), #1B5E20);
+            color: white;
+        }
+
+        .rules-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(46, 125, 50, 0.4);
+        }
+
+        /* ===== QUICK STATS ===== */
+        .quick-stats {
+            padding: 4rem 2rem;
+            background: rgba(15, 20, 25, 0.9);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 35, 40, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--mc-green);
+            box-shadow: 0 20px 40px rgba(76, 175, 80, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--mc-green);
+        }
+
+        .stat-card:nth-child(2) i { color: var(--mc-water); }
+        .stat-card:nth-child(3) i { color: #FFD700; }
+        .stat-card:nth-child(4) i { color: #E53935; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--mc-green);
+            margin: 0.5rem 0;
+            font-family: &#39;Minecraft&#39;, monospace;
+        }
+
+        .stat-label {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+
+        /* ===== RULES SECTION ===== */
+        .rules-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #0a0f14, #141e28);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--mc-green);
+            margin-bottom: 1rem;
+            font-family: &#39;Minecraft&#39;, monospace;
+            text-shadow: 2px 2px 0 var(--mc-dark-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--mc-water);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rules-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(20, 25, 30, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--mc-green);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .rules-tabs {
+            display: flex;
+            background: rgba(30, 35, 40, 0.9);
+            border-bottom: 3px solid var(--mc-green);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: &#39;Minecraft&#39;, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .tab-btn.active {
+            color: var(--mc-green);
+            background: rgba(76, 175, 80, 0.1);
+            border-bottom: 3px solid var(--mc-green);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: var(--mc-water);
+            background: rgba(135, 206, 235, 0.1);
+        }
+
+        .tab-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .rule-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--mc-green);
+            transition: all 0.3s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            background: rgba(76, 175, 80, 0.1);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.2);
+        }
+
+        .rule-icon {
+            font-size: 2rem;
+            color: var(--mc-green);
+            margin-bottom: 1rem;
+        }
+
+        .rule-card h4 {
+            color: var(--mc-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .rule-card p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        .rules-list {
+            padding: 1rem;
+        }
+
+        .rule-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+            border-left: 3px solid var(--mc-green);
+            transition: all 0.3s ease;
+        }
+
+        .rule-item:hover {
+            background: rgba(76, 175, 80, 0.1);
+            transform: translateX(10px);
+        }
+
+        .rule-item:nth-child(1) { animation-delay: 0.1s; }
+        .rule-item:nth-child(2) { animation-delay: 0.2s; }
+        .rule-item:nth-child(3) { animation-delay: 0.3s; }
+        .rule-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .rule-bullet {
+            color: var(--mc-green);
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .rules-footer {
+            background: rgba(30, 35, 40, 0.9);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 2px solid var(--mc-green);
+            color: #ff9800;
+        }
+
+        .rules-footer i {
+            color: #ff9800;
+            margin-right: 10px;
+        }
+
+       
+
+        /* ===== JOIN SECTION ===== */
+        .join-section {
+            padding: 5rem 2rem;
+            background: rgba(10, 15, 20, 0.95);
+        }
+
+        .join-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+        }
+
+        .join-method {
+            background: rgba(30, 35, 40, 0.9);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid var(--mc-green);
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-method::before {
+            content: &#39;&#39;;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--mc-green);
+            animation: shimmer 2s infinite;
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .method-header i {
+            font-size: 3rem;
+        }
+
+        .java .method-header i { color: var(--java); }
+        .bedrock .method-header i { color: var(--bedrock); }
+
+        .method-header h3 {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .method-steps {
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(76, 175, 80, 0.1);
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--mc-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--mc-green);
+            margin-bottom: 0.3rem;
+        }
+
+        .step-content p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .method-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .java-btn {
+            background: linear-gradient(135deg, var(--java), #e68900);
+            color: white;
+        }
+
+        .bedrock-btn {
+            background: linear-gradient(135deg, var(--bedrock), #0091ea);
+            color: white;
+        }
+
+        .method-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .troubleshooting {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            background: rgba(30, 35, 40, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid #ff9800;
+        }
+
+        .troubleshooting h3 {
+            color: #ff9800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .issue {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .issue h4 {
+            color: #ff9800;
+            margin-bottom: 0.5rem;
+        }
+
+        .issue p {
+            color: #ccc;
+        }
+
+   
+
+       
+
+     
+    </style>
+
+  
+
+ 
+    <!-- ===== JOIN SECTION ===== -->
+    <section class="join-section" id="join">
+      <div class="section-header">
+        <h2>
+          <i class="fas fa-gamepad"></i>
+          How to Join
+        </h2>
+        <p class="section-subtitle">
+          Get started on ZALREN SMP in minutes
+        </p>
+      </div>
+      <div class="join-container">
+        <div class="join-method java">
+          <div class="method-header">
+            <i class="fab fa-java"></i>
+            <h3>
+              Java Edition
+            </h3>
+          </div>
+          <div class="method-steps">
+            <div class="step">
+              <div class="step-number">
+                1
+              </div>
+              <div class="step-content">
+                <h4>
+                  Open Minecraft
+                </h4>
+                <p>
+                  Launch Minecraft Java Edition 1.21.8(All versions supported)
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">
+                2
+              </div>
+              <div class="step-content">
+                <h4>
+                  Multiplayer
+                </h4>
+                <p>
+                  Click &#34;Multiplayer&#34; then &#34;Add Server&#34;
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">
+                3
+              </div>
+              <div class="step-content">
+                <h4>
+                  Enter IP
+                </h4>
+                <p>
+                  Server Address:
+                  <code>                  Zalren.smp.quest
+</code>
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">
+                4
+              </div>
+              <div class="step-content">
+                <h4>
+                  Join
+                </h4>
+                <p>
+                  Click &#34;Join Server&#34; and start playing!
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="method-btn java-btn" onclick="copyJavaIP()">
+            <i class="fas fa-play"></i>
+            Join Java Server
+          </button>
+        </div>
+        <div class="join-method bedrock">
+          <div class="method-header">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>
+              Bedrock Edition
+            </h3>
+          </div>
+          <div class="method-steps">
+            <div class="step">
+              <div class="step-number">
+                1
+              </div>
+              <div class="step-content">
+                <h4>
+                  Open Minecraft
+                </h4>
+                <p>
+                  Launch Minecraft Bedrock on your device
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">
+                2
+              </div>
+              <div class="step-content">
+                <h4>
+                  Servers Tab
+                </h4>
+                <p>
+                  Go to &#34;Servers&#34; tab at the bottom
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">
+                3
+              </div>
+              <div class="step-content">
+                <h4>
+                  Add Server
+                </h4>
+                <p>
+                  Click &#34;Add Server&#34; at the bottom
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">
+                4
+              </div>
+              <div class="step-content">
+                <h4>
+                  Enter Details
+                </h4>
+                <p>
+                  Server Name: ZALREN SMP
+                  <br />
+                  Address:Zalren.smp.quest
+                  <br />
+                  Port:25224
+                </p>
+              </div>
+            </div>
+          </div>
+      <button class="method-btn bedrock-btn" onclick="copyBedrockIP()">
+            <i class="fas fa-play"></i>
+            Join Bedrock Server
+          </button>
+        </div>
+      </div>
+    </section>
+
+  <script>
+/* ===== COPY FUNCTIONS (FIXED & SIMPLE) ===== */
+
+// Java IP copy
+function copyJavaIP() {
+    const ip = "Zalren.smp.quest";
+    copyText(ip, "Java IP copied: " + ip);
+}
+
+// Bedrock IP + Port copy
+function copyBedrockIP() {
+    const ip = "Zalren.smp.quest";
+    const port = "25224";
+    const full = ip + ":" + port;
+    copyText(full, "Bedrock IP copied: " + full);
+}
+
+// Universal copy function (works on ALL browsers)
+function copyText(text, successMessage) {
+    // Modern method
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text)
+            .then(() => showNotification("✅ " + successMessage))
+            .catch(() => fallbackCopy(text, successMessage));
+    } else {
+        fallbackCopy(text, successMessage);
+    }
+}
+
+// Fallback (IMPORTANT for some browsers)
+function fallbackCopy(text, successMessage) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand("copy");
+        showNotification("✅ " + successMessage);
+    } catch {
+        showNotification("❌ Copy failed. Copy manually: " + text);
+    }
+    document.body.removeChild(textarea);
+}
+
+/* ===== NOTIFICATION ===== */
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        z-index: 10000;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        font-weight: bold;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 2500);
+}
+
+
+    </script>
+
+
 
 
    
