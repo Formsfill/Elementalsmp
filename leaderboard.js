@@ -245,3 +245,74 @@ function outsideClick(e) {
     closeSupport();
   }
 }
+
+
+
+
+
+/* ===== COPY FUNCTIONS (FIXED & SIMPLE) ===== */
+
+// Java IP copy
+function copyJavaIP() {
+    const ip = "ElementalSMPv3.aternos.me";
+    copyText(ip, "Java IP copied: " + ip);
+}
+
+// Bedrock IP + Port copy
+function copyBedrockIP() {
+    const ip = "ElementalSMPv3.aternos.me";
+    const port = "28323";
+    const full = ip + ":" + port;
+    copyText(full, "Bedrock IP copied: " + full);
+}
+
+// Universal copy function (works on ALL browsers)
+function copyText(text, successMessage) {
+    // Modern method
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text)
+            .then(() => showNotification("✅ " + successMessage))
+            .catch(() => fallbackCopy(text, successMessage));
+    } else {
+        fallbackCopy(text, successMessage);
+    }
+}
+
+// Fallback (IMPORTANT for some browsers)
+function fallbackCopy(text, successMessage) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand("copy");
+        showNotification("✅ " + successMessage);
+    } catch {
+        showNotification("❌ Copy failed. Copy manually: " + text);
+    }
+    document.body.removeChild(textarea);
+}
+
+/* ===== NOTIFICATION ===== */
+
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        z-index: 10000;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        font-weight: bold;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 2500);
+}
