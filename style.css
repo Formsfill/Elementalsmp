@@ -843,16 +843,7 @@ nav {
     --java: #F89820;
     --bedrock: #00B0F4;
 }
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 @keyframes shimmer {
     0% { background-position: -1000px 0; }
