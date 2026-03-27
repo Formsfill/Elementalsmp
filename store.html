@@ -58,88 +58,53 @@ a{text-decoration:none;color:#ffcc00;}
  
 
 
-
-  /* ===== NAVBAR FIX ===== */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* full screen width */
-  height: 70px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 20px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-
-  z-index: 1000;
-}
-
-/* Prevent horizontal scroll issue */
-body {
-  overflow-x: hidden;
-}
-
-/* Logo */
-.nav-logo {
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-/* Links */
-#nav-links {
-  display: flex;
-  gap: 25px;
-}
-
-#nav-links a {
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-#nav-links a:hover {
-  color: #ffcc00;
-}
-
 /* ===== MOBILE ===== */
-@media (max-width: 900px) {
-  #nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-
-    flex-direction: column;
-    background: #111;
-    padding: 60px 20px;
-    transition: 0.3s;
-  }
-
-  #nav-links.active {
-    right: 0;
-  }
-
-  #hamburger {
-    display: block;
-    font-size: 24px;
-    cursor: pointer;
-  }
+@media(max-width:800px){
+  .kb-item{width:90%;left:0;transform:none;margin-left:5%;}
+  .kb-item.left::after,.kb-item.right::after{left:-12px;right:auto;}
 }
+ nav {
+@media (min-width: 1200px) {
 
-/* ===== DESKTOP ===== */
 @media (min-width: 901px) {
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px; /* top/bottom and sides */
+  }
+
+  .nav-logo {
+    font-size: 1.5rem; /* logo size */
+    margin-right: 40px; /* space between logo and links */
+  }
+
+  #nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px; /* increased gap between links */
+    white-space: nowrap;
+  }
+
+  #nav-links a {
+    font-size: 1rem; /* normal size */
+    margin: 0; /* reset margin */
+    padding: 6px 3px; /* small padding for clickable area */
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  #nav-links a:hover {
+    transform: scale(1.05);
+  }
+
+  /* Hide hamburger + overlay on desktop */
   #hamburger,
   #close-btn,
   #overlay {
-    display: none;
+    display: none !important;
   }
 }
-
 </style>
  <link rel="stylesheet" href="style.css">
 </head>
